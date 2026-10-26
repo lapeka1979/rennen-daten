@@ -15,10 +15,17 @@
       bis        optional: letzter Tag bei mehrtägigen Events (Rallyes)
 
   OFFEN listet bekannte Rennen ohne festes Datum.
-  Stand: siehe STAND (beim Aktualisieren hochsetzen, Format JJJJ-MM-TT)
+  Stand: siehe STAND (bei jeder Änderung hochsetzen, Format JJJJ-MM-TT),
+  GEPRUEFT: pro Serie das Datum des letzten Abgleichs mit den offiziellen Quellen
 */
 
-const STAND = "2026-10-25";
+const STAND = "2026-10-26";
+
+// Wann die Termine jeder Serie zuletzt mit den offiziellen Quellen abgeglichen wurden (JJJJ-MM-TT)
+const GEPRUEFT = {
+  f1: "2026-10-25", nascar: "2026-10-25", indycar: "2026-10-25", dtm: "2026-10-25",
+  wec: "2026-10-25", wrc: "2026-10-25", imsa: "2026-10-25", supercars: "2026-10-25",
+};
 
 const SERIEN = [
   { id: "f1",       name: "Formel 1",                 info: "Internationale Formelrennwagen",            farbe: "#d6211f" },
