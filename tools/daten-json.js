@@ -2,7 +2,7 @@
 // Aufruf: node tools/daten-json.js <pfad/zu/daten.js> <ziel/daten.json>
 const fs = require("fs");
 const [src, out] = process.argv.slice(2);
-const code = fs.readFileSync(src, "utf8") + "\n;({ STAND, GEPRUEFT: typeof GEPRUEFT === 'undefined' ? {} : GEPRUEFT, RENNEN, OFFEN })";
-const { STAND, GEPRUEFT, RENNEN, OFFEN } = eval(code);
-fs.writeFileSync(out, JSON.stringify({ stand: STAND, geprueft: GEPRUEFT, rennen: RENNEN, offen: OFFEN }, null, 0).replace(/\],\[/g, "],\n["));
+const code = fs.readFileSync(src, "utf8") + "\n;({ STAND, GEPRUEFT: typeof GEPRUEFT === 'undefined' ? {} : GEPRUEFT, SERIEN, RENNEN, OFFEN })";
+const { STAND, GEPRUEFT, SERIEN, RENNEN, OFFEN } = eval(code);
+fs.writeFileSync(out, JSON.stringify({ stand: STAND, geprueft: GEPRUEFT, serien: SERIEN, rennen: RENNEN, offen: OFFEN }, null, 0).replace(/\],\[/g, "],\n["));
 console.log(`${out}: Stand ${STAND}, ${RENNEN.length} Rennen`);
