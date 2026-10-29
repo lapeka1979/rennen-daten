@@ -19,12 +19,17 @@
   GEPRUEFT: pro Serie das Datum des letzten Abgleichs mit den offiziellen Quellen
 */
 
-const STAND = "2026-10-26";
+const STAND = "2026-10-28";
 
 // Wann die Termine jeder Serie zuletzt mit den offiziellen Quellen abgeglichen wurden (JJJJ-MM-TT)
 const GEPRUEFT = {
-  f1: "2026-10-25", nascar: "2026-10-25", indycar: "2026-10-25", dtm: "2026-10-25",
-  wec: "2026-10-25", wrc: "2026-10-25", imsa: "2026-10-25", supercars: "2026-10-25",
+  f1: "2026-10-25", nascar: "2026-10-25", indycar: "2026-10-28", dtm: "2026-10-25",
+  wec: "2026-10-25", wrc: "2026-10-28", imsa: "2026-10-25", supercars: "2026-10-25",
+  "formel-e": "2026-10-28", f2: "2026-10-28", f3: "2026-10-28", f1academy: "2026-10-28", superformula: "2026-10-28", indynxt: "2026-10-28",
+  motogp: "2026-10-28", moto2: "2026-10-28", moto3: "2026-10-28", wsbk: "2026-10-28", mxgp: "2026-10-28", gtwc: "2026-10-28",
+  igtc: "2026-10-28", elms: "2026-10-28", supergt: "2026-10-28", britishgt: "2026-10-28", nls: "2026-10-28", "24h-lemans": "2026-10-28",
+  "24h-nbr": "2026-10-28", "24h-spa": "2026-10-28", "24h-daytona": "2026-10-28", "24h-dubai": "2026-10-28", "nascar-oreilly": "2026-10-28", "nascar-trucks": "2026-10-28",
+  nhra: "2026-10-28", btcc: "2026-10-28", supercup: "2026-10-28", wrc2: "2026-10-28", erc: "2026-10-28", worldrx: "2026-10-28",
 };
 
 const SERIEN = [
@@ -36,6 +41,43 @@ const SERIEN = [
   { id: "wrc",      name: "WRC",                      info: "Rallye-Weltmeisterschaft",                  farbe: "#c2541b" },
   { id: "imsa",     name: "IMSA SportsCar Championship", info: "Sportwagenrennen in Nordamerika",        farbe: "#0f8fa8" },
   { id: "supercars",name: "Supercars Championship",   info: "Australische V8-Tourenwagen",               farbe: "#b8357a" },
+  // ── Formelsport ──
+  { id: "formel-e",  name: "Formel E",                 info: "Elektro-Formelrennwagen-WM",                farbe: "#00a3e0", kurz: "FE",    dauer: 50 },
+  { id: "f2",        name: "Formel 2",                 info: "Nachwuchsklasse im Rahmen der Formel 1",    farbe: "#0b6e99", kurz: "F2",    dauer: 70 },
+  { id: "f3",        name: "Formel 3",                 info: "Nachwuchsklasse im Rahmen der Formel 1",    farbe: "#7a8a99", kurz: "F3",    dauer: 50 },
+  { id: "f1academy", name: "F1 Academy",               info: "Nachwuchsserie für Fahrerinnen",            farbe: "#d94f9c", kurz: "F1A",   dauer: 35 },
+  { id: "superformula", name: "Super Formula",         info: "Japanische Formel-Meisterschaft",           farbe: "#c8102e", kurz: "SF",    dauer: 75 },
+  { id: "indynxt",   name: "Indy NXT",                 info: "Nachwuchsklasse der IndyCar Series",        farbe: "#5b8def", kurz: "NXT",   dauer: 60 },
+  // ── Motorrad ──
+  { id: "motogp",    name: "MotoGP",                   info: "Motorrad-WM, Königsklasse",                 farbe: "#e4002b", kurz: "MotoGP", dauer: 45 },
+  { id: "moto2",     name: "Moto2",                    info: "Motorrad-WM, mittlere Klasse",              farbe: "#9e1b32", kurz: "Moto2", dauer: 40 },
+  { id: "moto3",     name: "Moto3",                    info: "Motorrad-WM, Einstiegsklasse",              farbe: "#f26b3a", kurz: "Moto3", dauer: 40 },
+  { id: "wsbk",      name: "WorldSBK",                 info: "Superbike-WM (seriennahe Motorräder)",      farbe: "#b5121b", kurz: "WSBK",  dauer: 40 },
+  { id: "mxgp",      name: "MXGP",                     info: "Motocross-WM",                              farbe: "#8a6d3b", kurz: "MXGP",  dauer: 140 },
+  // ── Sportwagen & GT ──
+  { id: "gtwc",      name: "GT World Challenge Europe", info: "GT3-Sprint- und Langstreckenrennen",       farbe: "#e87722", kurz: "GTWC",  dauer: 60 },
+  { id: "igtc",      name: "Intercontinental GT Challenge", info: "GT3-Langstrecken weltweit (Bathurst, Spa, Nürburgring …)", farbe: "#a35d00", kurz: "IGTC", dauer: 480 },
+  { id: "elms",      name: "ELMS",                     info: "European Le Mans Series, 4-Stunden-Rennen", farbe: "#4a3aa8", kurz: "ELMS",  dauer: 240 },
+  { id: "supergt",   name: "Super GT",                 info: "Japanische GT500/GT300-Meisterschaft",      farbe: "#e60012", kurz: "SGT",   dauer: 120 },
+  { id: "britishgt", name: "British GT",               info: "Britische GT3/GT4-Meisterschaft",           farbe: "#1d3f8f", kurz: "BGT",   dauer: 60 },
+  { id: "nls",       name: "NLS",                      info: "Nürburgring Langstrecken-Serie (Nordschleife)", farbe: "#2f6f3e", kurz: "NLS", dauer: 240 },
+  // ── 24-Stunden-Rennen (auch in WEC, IMSA, GTWC, IGTC enthalten – Erinnerung kommt nur einmal) ──
+  { id: "24h-lemans",  name: "24h Le Mans",            info: "24 Stunden von Le Mans (Teil der WEC)",     farbe: "#2b2b8f", kurz: "LM24",  dauer: 1440 },
+  { id: "24h-nbr",     name: "24h Nürburgring",        info: "24-Stunden-Rennen auf der Nordschleife",    farbe: "#3e8e41", kurz: "N24",   dauer: 1440 },
+  { id: "24h-spa",     name: "24h Spa",                info: "24 Stunden von Spa (GTWC/IGTC)",            farbe: "#d4a017", kurz: "SPA24", dauer: 1440 },
+  { id: "24h-daytona", name: "24h Daytona",            info: "Rolex 24 At Daytona (Teil der IMSA)",       farbe: "#13607c", kurz: "DAY24", dauer: 1440 },
+  { id: "24h-dubai",   name: "24h Dubai",              info: "24 Stunden von Dubai (24H Series)",         farbe: "#a8834a", kurz: "DXB24", dauer: 1440 },
+  // ── Stockcars & Dragster ──
+  { id: "nascar-oreilly", name: "NASCAR O'Reilly Series", info: "Zweite NASCAR-Liga (früher Xfinity Series)", farbe: "#f0b323", kurz: "XFIN", dauer: 150 },
+  { id: "nascar-trucks",  name: "NASCAR Trucks",        info: "NASCAR Craftsman Truck Series",            farbe: "#c77d0e", kurz: "TRUCK", dauer: 120 },
+  { id: "nhra",      name: "NHRA",                     info: "Amerikanische Dragster-Meisterschaft",      farbe: "#d71920", kurz: "NHRA",  dauer: 360 },
+  // ── Tourenwagen ──
+  { id: "btcc",      name: "BTCC",                     info: "Britische Tourenwagen-Meisterschaft",       farbe: "#00843d", kurz: "BTCC",  dauer: 360 },
+  { id: "supercup",  name: "Porsche Supercup",         info: "Markenpokal im Rahmen der Formel 1",        farbe: "#b0a07a", kurz: "PSC",   dauer: 35 },
+  // ── Rallye & Offroad ──
+  { id: "wrc2",      name: "WRC2",                     info: "Zweite Klasse der Rallye-WM",               farbe: "#e07b39", kurz: "WRC2",  dauer: 0 },
+  { id: "erc",       name: "ERC",                      info: "Rallye-Europameisterschaft",                farbe: "#8c4a2f", kurz: "ERC",   dauer: 0 },
+  { id: "worldrx",   name: "World RX",                 info: "Rallycross (derzeit als Europameisterschaft)", farbe: "#6b7f1a", kurz: "RX", dauer: 240 },
 ];
 
 const RENNEN = [
@@ -127,7 +169,13 @@ const RENNEN = [
   ["indycar", "Detroit Grand Prix", "Straßenkurs Detroit, Michigan", "2027-06-06", "12:30", "America/Detroit", false],
   ["indycar", "St. Louis", "World Wide Technology Raceway, Illinois", "2027-06-13", "15:00", "America/Chicago", false],
   ["indycar", "Road America", "Road America, Elkhart Lake, Wisconsin", "2027-06-27", "12:00", "America/Chicago", false],
-  ["indycar", "Mid-Ohio (noch nicht offiziell)", "Mid-Ohio Sports Car Course, Lexington, Ohio", "2027-07-04", "12:00", "America/New_York", false],
+  ["indycar", "Mid-Ohio", "Mid-Ohio Sports Car Course, Lexington, Ohio", "2027-07-04", "12:00", "America/New_York", false],
+  ["indycar", "Barcelona", "Circuit de Barcelona-Catalunya, Spanien", "2027-07-18", "15:00", "Europe/Madrid", false],
+  ["indycar", "Portland", "Portland International Raceway, Oregon", "2027-08-01", "12:00", "America/Los_Angeles", false],
+  ["indycar", "Markham (Toronto)", "Straßenkurs Markham, Ontario, Kanada", "2027-08-15", "12:00", "America/Toronto", false],
+  ["indycar", "Milwaukee · Rennen 1", "Milwaukee Mile, Wisconsin", "2027-08-28", "15:00", "America/Chicago", false],
+  ["indycar", "Milwaukee · Rennen 2", "Milwaukee Mile, Wisconsin", "2027-08-29", "13:00", "America/Chicago", false],
+  ["indycar", "Finale Laguna Seca", "WeatherTech Raceway Laguna Seca, Monterey", "2027-09-05", "12:00", "America/Los_Angeles", false],
 
   // ───────── DTM · 2027 (je zwei Rennen pro Wochenende) ─────────
   ["dtm", "Red Bull Ring · Rennen 1", "Red Bull Ring, Spielberg, Österreich", "2027-04-24", "13:30", "Europe/Vienna", false],
@@ -162,11 +210,21 @@ const RENNEN = [
 
   // ───────── WRC · Rest 2026 (Zeit = Rallye-Beginn) ─────────
   ["wrc", "Rallye Saudi-Arabien", "Dschidda, Saudi-Arabien", "2026-11-11", "08:00", "Asia/Riyadh", false, "2026-11-14"],
-  // ───────── WRC · 2027 (bisher datierte Läufe) ─────────
+  // ───────── WRC · 2027 (Zeit = Rallye-Beginn) ─────────
   ["wrc", "Rallye Monte-Carlo", "Monaco / Französische Alpen", "2027-01-21", "08:00", "Europe/Paris", false, "2027-01-24"],
+  ["wrc", "Rally Sweden", "Umeå, Schweden", "2027-02-18", "08:00", "Europe/Stockholm", false, "2027-02-21"],
+  ["wrc", "Safari Rally Kenya", "Naivasha, Kenia", "2027-03-18", "08:00", "Africa/Nairobi", false, "2027-03-21"],
+  ["wrc", "Croatia Rally", "Kroatien", "2027-04-08", "08:00", "Europe/Zagreb", false, "2027-04-11"],
+  ["wrc", "Rally Islas Canarias", "Gran Canaria, Spanien", "2027-05-06", "08:00", "Atlantic/Canary", false, "2027-05-09"],
+  ["wrc", "Rally Japan", "Aichi / Gifu, Japan", "2027-06-03", "08:00", "Asia/Tokyo", false, "2027-06-06"],
+  ["wrc", "Akropolis-Rallye", "Griechenland", "2027-06-24", "08:00", "Europe/Athens", false, "2027-06-27"],
   ["wrc", "Rally d'Italia Roma", "Rom, Italien", "2027-07-08", "08:00", "Europe/Rome", false, "2027-07-11"],
+  ["wrc", "Rally Estonia", "Tartu, Estland", "2027-07-22", "08:00", "Europe/Tallinn", false, "2027-07-25"],
+  ["wrc", "Rally Finland", "Jyväskylä, Finnland", "2027-07-29", "08:00", "Europe/Helsinki", false, "2027-08-01"],
   ["wrc", "Rally USA", "Knoxville, Tennessee, USA", "2027-08-26", "08:00", "America/New_York", false, "2027-08-29"],
   ["wrc", "Rally Scotland", "Aberdeen, Schottland", "2027-09-30", "08:00", "Europe/London", false, "2027-10-03"],
+  ["wrc", "Rally del Paraguay", "Encarnación, Paraguay", "2027-10-21", "08:00", "America/Asuncion", false, "2027-10-24"],
+  ["wrc", "Rally Chile Biobío", "Concepción, Chile", "2027-11-04", "08:00", "America/Santiago", false, "2027-11-07"],
   ["wrc", "Rallye Saudi-Arabien", "Dschidda, Saudi-Arabien", "2027-11-25", "08:00", "Asia/Riyadh", false, "2027-11-28"],
 
   // ───────── IMSA · 2027 (Saison 2026 ist beendet) ─────────
@@ -186,12 +244,425 @@ const RENNEN = [
   ["supercars", "Gold Coast 500", "Surfers Paradise, Queensland", "2026-10-25", "14:30", "Australia/Brisbane", false],
   ["supercars", "Sandown 500", "Sandown Raceway, Melbourne", "2026-11-08", "11:30", "Australia/Melbourne", false],
   ["supercars", "Adelaide Grand Final", "Adelaide Street Circuit", "2026-11-29", "14:30", "Australia/Adelaide", false],
+
+  // ───────── MotoGP · Rest 2026 (Zeit = Rennen am Sonntag) ─────────
+  ["motogp", "Großer Preis von Malaysia", "Sepang International Circuit, Malaysia", "2026-11-01", "15:00", "Asia/Kuala_Lumpur", false],
+  ["motogp", "Großer Preis von Katar", "Lusail International Circuit, Katar", "2026-11-08", "19:00", "Asia/Qatar", false],
+  ["motogp", "Großer Preis von Portugal", "Autódromo Internacional do Algarve, Portimão", "2026-11-22", "14:00", "Europe/Lisbon", false],
+  ["motogp", "Großer Preis von Valencia", "Circuit Ricardo Tormo, Valencia", "2026-11-29", "14:00", "Europe/Madrid", false],
+
+  // ───────── MotoGP · 2027 (Startzeiten geschätzt) ─────────
+  ["motogp", "Großer Preis von Thailand", "Chang International Circuit, Buriram", "2027-03-07", "15:00", "Asia/Bangkok", false],
+  ["motogp", "Großer Preis von Katar", "Lusail International Circuit, Katar", "2027-03-14", "19:00", "Asia/Qatar", false],
+  ["motogp", "Großer Preis von Brasilien", "Autódromo Ayrton Senna, Goiânia", "2027-04-04", "14:00", "America/Sao_Paulo", false],
+  ["motogp", "Großer Preis von Argentinien", "Autódromo Oscar y Juan Gálvez, Buenos Aires", "2027-04-11", "14:00", "America/Argentina/Buenos_Aires", false],
+  ["motogp", "Großer Preis der USA", "Circuit of the Americas, Austin", "2027-04-25", "13:00", "America/Chicago", false],
+  ["motogp", "Großer Preis von Spanien", "Circuito de Jerez", "2027-05-09", "14:00", "Europe/Madrid", false],
+  ["motogp", "Großer Preis von Frankreich", "Circuit Bugatti, Le Mans", "2027-05-16", "14:00", "Europe/Paris", false],
+  ["motogp", "Großer Preis von Italien", "Autodromo del Mugello", "2027-05-30", "14:00", "Europe/Rome", false],
+  ["motogp", "Großer Preis von Katalonien", "Circuit de Barcelona-Catalunya", "2027-06-13", "14:00", "Europe/Madrid", false],
+  ["motogp", "Großer Preis der Niederlande", "TT Circuit Assen", "2027-06-27", "14:00", "Europe/Amsterdam", false],
+  ["motogp", "Großer Preis von Deutschland", "Sachsenring", "2027-07-11", "14:00", "Europe/Berlin", false],
+  ["motogp", "Großer Preis von Tschechien", "Automotodrom Brno", "2027-07-18", "14:00", "Europe/Prague", false],
+  ["motogp", "Großer Preis von Großbritannien", "Silverstone Circuit", "2027-08-15", "13:00", "Europe/London", false],
+  ["motogp", "Großer Preis von Österreich", "Red Bull Ring, Spielberg", "2027-08-29", "14:00", "Europe/Vienna", false],
+  ["motogp", "Großer Preis von San Marino", "Misano World Circuit", "2027-09-12", "14:00", "Europe/Rome", false],
+  ["motogp", "Großer Preis von Aragón", "MotorLand Aragón, Alcañiz", "2027-09-19", "14:00", "Europe/Madrid", false],
+  ["motogp", "Großer Preis von Portugal", "Autódromo Internacional do Algarve, Portimão", "2027-10-03", "14:00", "Europe/Lisbon", false],
+  ["motogp", "Großer Preis von Japan", "Mobility Resort Motegi", "2027-10-17", "14:00", "Asia/Tokyo", false],
+  ["motogp", "Großer Preis von Malaysia", "Sepang International Circuit, Malaysia", "2027-10-24", "15:00", "Asia/Kuala_Lumpur", false],
+  ["motogp", "Großer Preis von Indonesien", "Mandalika International Circuit, Lombok", "2027-10-31", "15:00", "Asia/Makassar", false],
+  ["motogp", "Großer Preis von Australien", "Straßenkurs Adelaide", "2027-11-14", "14:00", "Australia/Adelaide", false],
+  ["motogp", "Großer Preis von Valencia", "Circuit Ricardo Tormo, Valencia", "2027-11-28", "14:00", "Europe/Madrid", false],
+
+  // ───────── Moto2 · Rest 2026 (Zeit = Rennen am Sonntag) ─────────
+  ["moto2", "Großer Preis von Malaysia", "Sepang International Circuit, Malaysia", "2026-11-01", "13:15", "Asia/Kuala_Lumpur", false],
+  ["moto2", "Großer Preis von Katar", "Lusail International Circuit, Katar", "2026-11-08", "17:15", "Asia/Qatar", false],
+  ["moto2", "Großer Preis von Portugal", "Autódromo Internacional do Algarve, Portimão", "2026-11-22", "12:15", "Europe/Lisbon", false],
+  ["moto2", "Großer Preis von Valencia", "Circuit Ricardo Tormo, Valencia", "2026-11-29", "12:15", "Europe/Madrid", false],
+
+  // ───────── Moto2 · 2027 (Startzeiten geschätzt) ─────────
+  ["moto2", "Großer Preis von Thailand", "Chang International Circuit, Buriram", "2027-03-07", "13:15", "Asia/Bangkok", false],
+  ["moto2", "Großer Preis von Katar", "Lusail International Circuit, Katar", "2027-03-14", "17:15", "Asia/Qatar", false],
+  ["moto2", "Großer Preis von Brasilien", "Autódromo Ayrton Senna, Goiânia", "2027-04-04", "12:15", "America/Sao_Paulo", false],
+  ["moto2", "Großer Preis von Argentinien", "Autódromo Oscar y Juan Gálvez, Buenos Aires", "2027-04-11", "12:15", "America/Argentina/Buenos_Aires", false],
+  ["moto2", "Großer Preis der USA", "Circuit of the Americas, Austin", "2027-04-25", "11:15", "America/Chicago", false],
+  ["moto2", "Großer Preis von Spanien", "Circuito de Jerez", "2027-05-09", "12:15", "Europe/Madrid", false],
+  ["moto2", "Großer Preis von Frankreich", "Circuit Bugatti, Le Mans", "2027-05-16", "12:15", "Europe/Paris", false],
+  ["moto2", "Großer Preis von Italien", "Autodromo del Mugello", "2027-05-30", "12:15", "Europe/Rome", false],
+  ["moto2", "Großer Preis von Katalonien", "Circuit de Barcelona-Catalunya", "2027-06-13", "12:15", "Europe/Madrid", false],
+  ["moto2", "Großer Preis der Niederlande", "TT Circuit Assen", "2027-06-27", "12:15", "Europe/Amsterdam", false],
+  ["moto2", "Großer Preis von Deutschland", "Sachsenring", "2027-07-11", "12:15", "Europe/Berlin", false],
+  ["moto2", "Großer Preis von Tschechien", "Automotodrom Brno", "2027-07-18", "12:15", "Europe/Prague", false],
+  ["moto2", "Großer Preis von Großbritannien", "Silverstone Circuit", "2027-08-15", "11:15", "Europe/London", false],
+  ["moto2", "Großer Preis von Österreich", "Red Bull Ring, Spielberg", "2027-08-29", "12:15", "Europe/Vienna", false],
+  ["moto2", "Großer Preis von San Marino", "Misano World Circuit", "2027-09-12", "12:15", "Europe/Rome", false],
+  ["moto2", "Großer Preis von Aragón", "MotorLand Aragón, Alcañiz", "2027-09-19", "12:15", "Europe/Madrid", false],
+  ["moto2", "Großer Preis von Portugal", "Autódromo Internacional do Algarve, Portimão", "2027-10-03", "12:15", "Europe/Lisbon", false],
+  ["moto2", "Großer Preis von Japan", "Mobility Resort Motegi", "2027-10-17", "12:15", "Asia/Tokyo", false],
+  ["moto2", "Großer Preis von Malaysia", "Sepang International Circuit, Malaysia", "2027-10-24", "13:15", "Asia/Kuala_Lumpur", false],
+  ["moto2", "Großer Preis von Indonesien", "Mandalika International Circuit, Lombok", "2027-10-31", "13:15", "Asia/Makassar", false],
+  ["moto2", "Großer Preis von Australien", "Straßenkurs Adelaide", "2027-11-14", "12:15", "Australia/Adelaide", false],
+  ["moto2", "Großer Preis von Valencia", "Circuit Ricardo Tormo, Valencia", "2027-11-28", "12:15", "Europe/Madrid", false],
+
+  // ───────── Moto3 · Rest 2026 (Zeit = Rennen am Sonntag) ─────────
+  ["moto3", "Großer Preis von Malaysia", "Sepang International Circuit, Malaysia", "2026-11-01", "12:00", "Asia/Kuala_Lumpur", false],
+  ["moto3", "Großer Preis von Katar", "Lusail International Circuit, Katar", "2026-11-08", "16:00", "Asia/Qatar", false],
+  ["moto3", "Großer Preis von Portugal", "Autódromo Internacional do Algarve, Portimão", "2026-11-22", "11:00", "Europe/Lisbon", false],
+  ["moto3", "Großer Preis von Valencia", "Circuit Ricardo Tormo, Valencia", "2026-11-29", "11:00", "Europe/Madrid", false],
+
+  // ───────── Moto3 · 2027 (Startzeiten geschätzt) ─────────
+  ["moto3", "Großer Preis von Thailand", "Chang International Circuit, Buriram", "2027-03-07", "12:00", "Asia/Bangkok", false],
+  ["moto3", "Großer Preis von Katar", "Lusail International Circuit, Katar", "2027-03-14", "16:00", "Asia/Qatar", false],
+  ["moto3", "Großer Preis von Brasilien", "Autódromo Ayrton Senna, Goiânia", "2027-04-04", "11:00", "America/Sao_Paulo", false],
+  ["moto3", "Großer Preis von Argentinien", "Autódromo Oscar y Juan Gálvez, Buenos Aires", "2027-04-11", "11:00", "America/Argentina/Buenos_Aires", false],
+  ["moto3", "Großer Preis der USA", "Circuit of the Americas, Austin", "2027-04-25", "10:00", "America/Chicago", false],
+  ["moto3", "Großer Preis von Spanien", "Circuito de Jerez", "2027-05-09", "11:00", "Europe/Madrid", false],
+  ["moto3", "Großer Preis von Frankreich", "Circuit Bugatti, Le Mans", "2027-05-16", "11:00", "Europe/Paris", false],
+  ["moto3", "Großer Preis von Italien", "Autodromo del Mugello", "2027-05-30", "11:00", "Europe/Rome", false],
+  ["moto3", "Großer Preis von Katalonien", "Circuit de Barcelona-Catalunya", "2027-06-13", "11:00", "Europe/Madrid", false],
+  ["moto3", "Großer Preis der Niederlande", "TT Circuit Assen", "2027-06-27", "11:00", "Europe/Amsterdam", false],
+  ["moto3", "Großer Preis von Deutschland", "Sachsenring", "2027-07-11", "11:00", "Europe/Berlin", false],
+  ["moto3", "Großer Preis von Tschechien", "Automotodrom Brno", "2027-07-18", "11:00", "Europe/Prague", false],
+  ["moto3", "Großer Preis von Großbritannien", "Silverstone Circuit", "2027-08-15", "10:00", "Europe/London", false],
+  ["moto3", "Großer Preis von Österreich", "Red Bull Ring, Spielberg", "2027-08-29", "11:00", "Europe/Vienna", false],
+  ["moto3", "Großer Preis von San Marino", "Misano World Circuit", "2027-09-12", "11:00", "Europe/Rome", false],
+  ["moto3", "Großer Preis von Aragón", "MotorLand Aragón, Alcañiz", "2027-09-19", "11:00", "Europe/Madrid", false],
+  ["moto3", "Großer Preis von Portugal", "Autódromo Internacional do Algarve, Portimão", "2027-10-03", "11:00", "Europe/Lisbon", false],
+  ["moto3", "Großer Preis von Japan", "Mobility Resort Motegi", "2027-10-17", "11:00", "Asia/Tokyo", false],
+  ["moto3", "Großer Preis von Malaysia", "Sepang International Circuit, Malaysia", "2027-10-24", "12:00", "Asia/Kuala_Lumpur", false],
+  ["moto3", "Großer Preis von Indonesien", "Mandalika International Circuit, Lombok", "2027-10-31", "12:00", "Asia/Makassar", false],
+  ["moto3", "Großer Preis von Australien", "Straßenkurs Adelaide", "2027-11-14", "11:00", "Australia/Adelaide", false],
+  ["moto3", "Großer Preis von Valencia", "Circuit Ricardo Tormo, Valencia", "2027-11-28", "11:00", "Europe/Madrid", false],
+
+  // ───────── Formel E · Saison 2026/27 (Doppelrennen = zwei Termine) ─────────
+  ["formel-e", "Jeddah E-Prix · Rennen 1", "Jeddah Corniche Circuit, Saudi-Arabien", "2026-12-18", "20:00", "Asia/Riyadh", false],
+  ["formel-e", "Jeddah E-Prix · Rennen 2", "Jeddah Corniche Circuit, Saudi-Arabien", "2026-12-19", "20:00", "Asia/Riyadh", false],
+  ["formel-e", "Mexico City E-Prix", "Autódromo Hermanos Rodríguez, Mexiko-Stadt", "2027-01-16", "15:05", "America/Mexico_City", false],
+  ["formel-e", "Austin E-Prix", "Circuit of the Americas, Austin, USA", "2027-02-06", "14:05", "America/Chicago", false],
+  ["formel-e", "Miami E-Prix", "Miami International Autodrome, USA", "2027-02-20", "14:05", "America/New_York", false],
+  ["formel-e", "São Paulo E-Prix", "Anhembi Sambadrome, São Paulo", "2027-03-13", "14:05", "America/Sao_Paulo", false],
+  ["formel-e", "Sanya E-Prix", "Haitang Bay Circuit, Sanya, China", "2027-04-17", "15:05", "Asia/Shanghai", false],
+  ["formel-e", "Monaco E-Prix · Rennen 1", "Circuit de Monaco", "2027-05-01", "15:05", "Europe/Monaco", false],
+  ["formel-e", "Monaco E-Prix · Rennen 2", "Circuit de Monaco", "2027-05-02", "15:05", "Europe/Monaco", false],
+  ["formel-e", "Berlin E-Prix · Rennen 1", "Flughafen Tempelhof, Berlin", "2027-05-08", "15:05", "Europe/Berlin", false],
+  ["formel-e", "Berlin E-Prix · Rennen 2", "Flughafen Tempelhof, Berlin", "2027-05-09", "15:05", "Europe/Berlin", false],
+  ["formel-e", "London E-Prix · Rennen 1", "Brands Hatch, Großbritannien", "2027-05-29", "15:05", "Europe/London", false],
+  ["formel-e", "London E-Prix · Rennen 2", "Brands Hatch, Großbritannien", "2027-05-30", "15:05", "Europe/London", false],
+  ["formel-e", "Zandvoort E-Prix · Rennen 1", "Circuit Zandvoort, Niederlande", "2027-06-18", "15:05", "Europe/Amsterdam", false],
+  ["formel-e", "Zandvoort E-Prix · Rennen 2", "Circuit Zandvoort, Niederlande", "2027-06-19", "15:05", "Europe/Amsterdam", false],
+  ["formel-e", "Madrid E-Prix · Rennen 1", "Circuito del Jarama, Madrid", "2027-06-26", "15:05", "Europe/Madrid", false],
+  ["formel-e", "Madrid E-Prix · Rennen 2", "Circuito del Jarama, Madrid", "2027-06-27", "15:05", "Europe/Madrid", false],
+  ["formel-e", "Shanghai E-Prix · Rennen 1", "Shanghai International Circuit", "2027-07-10", "15:05", "Asia/Shanghai", false],
+  ["formel-e", "Shanghai E-Prix · Rennen 2", "Shanghai International Circuit", "2027-07-11", "15:05", "Asia/Shanghai", false],
+  ["formel-e", "Tokyo E-Prix · Rennen 1", "Tokyo Street Circuit, Japan", "2027-07-24", "15:05", "Asia/Tokyo", false],
+  ["formel-e", "Tokyo E-Prix · Rennen 2", "Tokyo Street Circuit, Japan", "2027-07-25", "15:05", "Asia/Tokyo", false],
+
+  // ───────── Formel 2 · Rest 2026 (Zeit = Hauptrennen am Sonntag) ─────────
+  ["f2", "Katar · Hauptrennen", "Lusail International Circuit, Katar", "2026-11-29", "14:55", "Asia/Qatar", false],
+  ["f2", "Abu Dhabi · Hauptrennen", "Yas Marina Circuit, VAE", "2026-12-06", "12:55", "Asia/Dubai", false],
+
+  // ───────── Formel 2 · 2027 (Hauptrennen am Sonntag, Zeiten geschätzt) ─────────
+  ["f2", "Bahrain · Hauptrennen", "Bahrain International Circuit, Sakhir", "2027-03-14", "13:55", "Asia/Bahrain", false],
+  ["f2", "Saudi-Arabien · Hauptrennen", "Jeddah Corniche Circuit", "2027-03-21", "15:55", "Asia/Riyadh", false],
+  ["f2", "Australien · Hauptrennen", "Albert Park, Melbourne", "2027-04-04", "10:55", "Australia/Melbourne", false],
+  ["f2", "Kanada · Hauptrennen", "Circuit Gilles-Villeneuve, Montréal", "2027-05-23", "11:55", "America/Toronto", false],
+  ["f2", "Monaco · Hauptrennen", "Circuit de Monaco", "2027-06-06", "10:55", "Europe/Monaco", false],
+  ["f2", "Großbritannien · Hauptrennen", "Silverstone Circuit", "2027-07-04", "10:55", "Europe/London", false],
+  ["f2", "Österreich · Hauptrennen", "Red Bull Ring, Spielberg", "2027-07-11", "10:55", "Europe/Vienna", false],
+  ["f2", "Italien · Hauptrennen", "Autodromo Nazionale Monza", "2027-09-05", "10:55", "Europe/Rome", false],
+  ["f2", "Spanien · Hauptrennen", "MADRING, Madrid", "2027-09-12", "10:55", "Europe/Madrid", false],
+  ["f2", "Aserbaidschan · Hauptrennen", "Baku City Circuit", "2027-09-26", "10:55", "Asia/Baku", false],
+  ["f2", "Türkei · Hauptrennen", "Istanbul Park", "2027-10-03", "10:55", "Europe/Istanbul", false],
+  ["f2", "Mexiko · Hauptrennen", "Autódromo Hermanos Rodríguez, Mexiko-Stadt", "2027-10-31", "09:55", "America/Mexico_City", false],
+  ["f2", "Katar · Hauptrennen", "Lusail International Circuit", "2027-12-05", "14:55", "Asia/Qatar", false],
+  ["f2", "Abu Dhabi · Hauptrennen", "Yas Marina Circuit", "2027-12-12", "12:55", "Asia/Dubai", false],
+
+  // ───────── Formel 3 · 2027 (Hauptrennen am Sonntag, Zeiten geschätzt) ─────────
+  ["f3", "Bahrain · Hauptrennen", "Bahrain International Circuit, Sakhir", "2027-03-14", "12:15", "Asia/Bahrain", false],
+  ["f3", "Saudi-Arabien · Hauptrennen", "Jeddah Corniche Circuit", "2027-03-21", "14:15", "Asia/Riyadh", false],
+  ["f3", "Australien · Hauptrennen", "Albert Park, Melbourne", "2027-04-04", "09:15", "Australia/Melbourne", false],
+  ["f3", "Kanada · Hauptrennen", "Circuit Gilles-Villeneuve, Montréal", "2027-05-23", "10:15", "America/Toronto", false],
+  ["f3", "Monaco · Hauptrennen", "Circuit de Monaco", "2027-06-06", "09:15", "Europe/Monaco", false],
+  ["f3", "Großbritannien · Hauptrennen", "Silverstone Circuit", "2027-07-04", "09:15", "Europe/London", false],
+  ["f3", "Österreich · Hauptrennen", "Red Bull Ring, Spielberg", "2027-07-11", "09:15", "Europe/Vienna", false],
+  ["f3", "Italien · Hauptrennen", "Autodromo Nazionale Monza", "2027-09-05", "09:15", "Europe/Rome", false],
+  ["f3", "Spanien · Hauptrennen", "MADRING, Madrid", "2027-09-12", "09:15", "Europe/Madrid", false],
+  ["f3", "Türkei · Hauptrennen", "Istanbul Park", "2027-10-03", "09:15", "Europe/Istanbul", false],
+
+  // ───────── F1 Academy · Rest 2026 ─────────
+  ["f1academy", "Las Vegas · Finale", "Las Vegas Strip Circuit, USA", "2026-11-21", "15:00", "America/Los_Angeles", false],
+
+  // ───────── 24h Daytona (auch in IMSA) ─────────
+  ["24h-daytona", "Rolex 24 At Daytona", "Daytona International Speedway, Florida", "2027-01-30", "13:40", "America/New_York", false],
+
+  // ───────── 24h Dubai ─────────
+  ["24h-dubai", "24 Stunden von Dubai", "Dubai Autodrome, VAE", "2027-01-09", "14:00", "Asia/Dubai", false],
+
+  // ───────── 24h Nürburgring (auch in IGTC) ─────────
+  ["24h-nbr", "24 Stunden Nürburgring", "Nürburgring-Nordschleife", "2027-05-29", "15:30", "Europe/Berlin", false],
+
+  // ───────── 24h Le Mans (auch in WEC) ─────────
+  ["24h-lemans", "24 Stunden von Le Mans", "Circuit de la Sarthe, Frankreich", "2027-06-12", "16:00", "Europe/Paris", false],
+
+  // ───────── 24h Spa (auch in GT World Challenge und IGTC) ─────────
+  ["24h-spa", "24 Stunden von Spa", "Circuit de Spa-Francorchamps, Belgien", "2027-06-26", "16:30", "Europe/Brussels", false],
+
+  // ───────── GT World Challenge Europe · 2027 (Endurance + Sprint) ─────────
+  ["gtwc", "6 Stunden von Le Castellet", "Circuit Paul Ricard, Frankreich", "2027-04-18", "12:00", "Europe/Paris", false],
+  ["gtwc", "Brands Hatch · Sprint 1", "Brands Hatch, Großbritannien", "2027-05-01", "15:00", "Europe/London", false],
+  ["gtwc", "Brands Hatch · Sprint 2", "Brands Hatch, Großbritannien", "2027-05-02", "14:00", "Europe/London", false],
+  ["gtwc", "3 Stunden von Imola", "Autodromo Enzo e Dino Ferrari, Italien", "2027-05-23", "15:00", "Europe/Rome", false],
+  ["gtwc", "24 Stunden von Spa", "Circuit de Spa-Francorchamps, Belgien", "2027-06-26", "16:30", "Europe/Brussels", false],
+  ["gtwc", "Misano · Sprint 1", "Misano World Circuit, Italien", "2027-07-17", "15:00", "Europe/Rome", false],
+  ["gtwc", "Misano · Sprint 2", "Misano World Circuit, Italien", "2027-07-18", "14:00", "Europe/Rome", false],
+  ["gtwc", "Magny-Cours · Sprint 1", "Circuit de Nevers Magny-Cours, Frankreich", "2027-07-31", "15:00", "Europe/Paris", false],
+  ["gtwc", "Magny-Cours · Sprint 2", "Circuit de Nevers Magny-Cours, Frankreich", "2027-08-01", "14:00", "Europe/Paris", false],
+  ["gtwc", "3 Stunden vom Nürburgring", "Nürburgring GP-Strecke", "2027-08-29", "15:00", "Europe/Berlin", false],
+  ["gtwc", "Zandvoort · Sprint 1", "Circuit Zandvoort, Niederlande", "2027-09-18", "15:00", "Europe/Amsterdam", false],
+  ["gtwc", "Zandvoort · Sprint 2", "Circuit Zandvoort, Niederlande", "2027-09-19", "14:00", "Europe/Amsterdam", false],
+  ["gtwc", "Hungaroring · Sprint 1", "Hungaroring, Budapest", "2027-10-02", "15:00", "Europe/Budapest", false],
+  ["gtwc", "Hungaroring · Sprint 2", "Hungaroring, Budapest", "2027-10-03", "14:00", "Europe/Budapest", false],
+  ["gtwc", "3 Stunden von Barcelona", "Circuit de Barcelona-Catalunya, Spanien", "2027-10-24", "15:00", "Europe/Madrid", false],
+
+  // ───────── Intercontinental GT Challenge · 2027 ─────────
+  ["igtc", "12 Stunden von Bathurst", "Mount Panorama, Bathurst, Australien", "2027-02-14", "05:45", "Australia/Sydney", false],
+  ["igtc", "8 Stunden von Texas", "Circuit of the Americas, Austin, USA", "2027-05-08", "10:00", "America/Chicago", false],
+  ["igtc", "24 Stunden Nürburgring", "Nürburgring-Nordschleife", "2027-05-29", "15:30", "Europe/Berlin", false],
+  ["igtc", "24 Stunden von Spa", "Circuit de Spa-Francorchamps, Belgien", "2027-06-26", "16:30", "Europe/Brussels", false],
+  ["igtc", "Suzuka 1000 km", "Suzuka Circuit, Japan", "2027-09-05", "11:30", "Asia/Tokyo", false],
+
+  // ───────── WorldSBK · 2027 (Lauf 1 Samstag, Lauf 2 Sonntag, Zeiten geschätzt) ─────────
+  ["wsbk", "Australien · Lauf 1", "Phillip Island Grand Prix Circuit", "2027-02-20", "14:00", "Australia/Melbourne", false],
+  ["wsbk", "Australien · Lauf 2", "Phillip Island Grand Prix Circuit", "2027-02-21", "14:00", "Australia/Melbourne", false],
+  ["wsbk", "Portugal · Lauf 1", "Autódromo Internacional do Algarve, Portimão", "2027-03-20", "14:00", "Europe/Lisbon", false],
+  ["wsbk", "Portugal · Lauf 2", "Autódromo Internacional do Algarve, Portimão", "2027-03-21", "14:00", "Europe/Lisbon", false],
+  ["wsbk", "Valencia · Lauf 1", "Circuit Ricardo Tormo, Spanien", "2027-04-03", "14:00", "Europe/Madrid", false],
+  ["wsbk", "Valencia · Lauf 2", "Circuit Ricardo Tormo, Spanien", "2027-04-04", "14:00", "Europe/Madrid", false],
+  ["wsbk", "Niederlande · Lauf 1", "TT Circuit Assen", "2027-04-17", "14:00", "Europe/Amsterdam", false],
+  ["wsbk", "Niederlande · Lauf 2", "TT Circuit Assen", "2027-04-18", "14:00", "Europe/Amsterdam", false],
+  ["wsbk", "Aragón · Lauf 1", "MotorLand Aragón, Spanien", "2027-05-22", "14:00", "Europe/Madrid", false],
+  ["wsbk", "Aragón · Lauf 2", "MotorLand Aragón, Spanien", "2027-05-23", "14:00", "Europe/Madrid", false],
+  ["wsbk", "Tschechien · Lauf 1", "Autodrom Most", "2027-06-05", "14:00", "Europe/Prague", false],
+  ["wsbk", "Tschechien · Lauf 2", "Autodrom Most", "2027-06-06", "14:00", "Europe/Prague", false],
+  ["wsbk", "Emilia-Romagna · Lauf 1", "Misano World Circuit, Italien", "2027-06-19", "14:00", "Europe/Rome", false],
+  ["wsbk", "Emilia-Romagna · Lauf 2", "Misano World Circuit, Italien", "2027-06-20", "14:00", "Europe/Rome", false],
+  ["wsbk", "Großbritannien · Lauf 1", "Donington Park", "2027-07-10", "14:00", "Europe/London", false],
+  ["wsbk", "Großbritannien · Lauf 2", "Donington Park", "2027-07-11", "14:00", "Europe/London", false],
+  ["wsbk", "Frankreich · Lauf 1", "Circuit de Nevers Magny-Cours", "2027-09-04", "14:00", "Europe/Paris", false],
+  ["wsbk", "Frankreich · Lauf 2", "Circuit de Nevers Magny-Cours", "2027-09-05", "14:00", "Europe/Paris", false],
+  ["wsbk", "Italien · Lauf 1", "Cremona Circuit", "2027-09-25", "14:00", "Europe/Rome", false],
+  ["wsbk", "Italien · Lauf 2", "Cremona Circuit", "2027-09-26", "14:00", "Europe/Rome", false],
+  ["wsbk", "Estoril · Lauf 1", "Circuito Estoril, Portugal", "2027-10-16", "14:00", "Europe/Lisbon", false],
+  ["wsbk", "Estoril · Lauf 2", "Circuito Estoril, Portugal", "2027-10-17", "14:00", "Europe/Lisbon", false],
+  ["wsbk", "China · Lauf 1", "Shanghai International Circuit", "2027-10-30", "14:00", "Asia/Shanghai", false],
+  ["wsbk", "China · Lauf 2", "Shanghai International Circuit", "2027-10-31", "14:00", "Asia/Shanghai", false],
+
+  // ───────── Super GT · Rest 2026 (Finale Motegi als Doppelveranstaltung) ─────────
+  ["supergt", "Motegi · Rennen 1", "Mobility Resort Motegi, Japan", "2026-11-07", "13:30", "Asia/Tokyo", false],
+  ["supergt", "Motegi · Finale (300 km)", "Mobility Resort Motegi, Japan", "2026-11-08", "13:00", "Asia/Tokyo", false],
+
+  // ───────── Super GT · 2027 ─────────
+  ["supergt", "Okayama", "Okayama International Circuit", "2027-04-04", "13:30", "Asia/Tokyo", false],
+  ["supergt", "Fuji (Golden Week)", "Fuji Speedway", "2027-05-04", "13:30", "Asia/Tokyo", false],
+  ["supergt", "Sepang (Abendrennen)", "Sepang International Circuit, Malaysia", "2027-06-19", "17:00", "Asia/Kuala_Lumpur", false],
+  ["supergt", "Suzuka", "Suzuka Circuit", "2027-08-01", "13:30", "Asia/Tokyo", false],
+  ["supergt", "Sugo", "Sportsland Sugo", "2027-09-19", "13:30", "Asia/Tokyo", false],
+  ["supergt", "Autopolis", "Autopolis, Hita", "2027-10-17", "13:30", "Asia/Tokyo", false],
+  ["supergt", "Fuji", "Fuji Speedway", "2027-11-07", "13:30", "Asia/Tokyo", false],
+  ["supergt", "Motegi · Finale", "Mobility Resort Motegi", "2027-11-21", "13:00", "Asia/Tokyo", false],
+
+  // ───────── Super Formula · Rest 2026 (Finale Suzuka, zwei Rennen) ─────────
+  ["superformula", "Suzuka · Rennen 11", "Suzuka Circuit, Japan", "2026-11-21", "14:30", "Asia/Tokyo", false],
+  ["superformula", "Suzuka · Rennen 12 (Finale)", "Suzuka Circuit, Japan", "2026-11-22", "14:30", "Asia/Tokyo", false],
+
+  // ───────── Super Formula · 2027 (Zeit = Sonntagsrennen; Samstagsrennen noch nicht bestätigt) ─────────
+  ["superformula", "Suzuka", "Suzuka Circuit", "2027-03-14", "14:30", "Asia/Tokyo", false],
+  ["superformula", "Motegi", "Mobility Resort Motegi", "2027-04-18", "14:30", "Asia/Tokyo", false],
+  ["superformula", "Autopolis", "Autopolis, Hita", "2027-05-16", "14:30", "Asia/Tokyo", false],
+  ["superformula", "Sugo", "Sportsland Sugo", "2027-06-27", "14:30", "Asia/Tokyo", false],
+  ["superformula", "Fuji", "Fuji Speedway", "2027-07-18", "14:30", "Asia/Tokyo", false],
+  ["superformula", "Fuji", "Fuji Speedway", "2027-10-10", "14:30", "Asia/Tokyo", false],
+  ["superformula", "Suzuka · Finale", "Suzuka Circuit", "2027-11-28", "14:30", "Asia/Tokyo", false],
+
+  // ───────── ELMS · 2027 (alle Rennen 4 Stunden) ─────────
+  ["elms", "4 Stunden von Barcelona", "Circuit de Barcelona-Catalunya, Spanien", "2027-03-14", "11:30", "Europe/Madrid", false],
+  ["elms", "4 Stunden von Le Castellet", "Circuit Paul Ricard, Frankreich", "2027-05-02", "11:30", "Europe/Paris", false],
+  ["elms", "4 Stunden von Imola", "Autodromo Enzo e Dino Ferrari, Italien", "2027-07-04", "11:30", "Europe/Rome", false],
+  ["elms", "4 Stunden von Spa-Francorchamps", "Circuit de Spa-Francorchamps, Belgien", "2027-08-22", "11:30", "Europe/Brussels", false],
+  ["elms", "4 Stunden von Silverstone", "Silverstone Circuit, Großbritannien", "2027-09-05", "12:00", "Europe/London", false],
+  ["elms", "4 Stunden von Portimão", "Autódromo Internacional do Algarve, Portugal", "2027-10-02", "15:00", "Europe/Lisbon", false],
+
+  // ───────── NASCAR O'Reilly Series · Rest 2026 (Zeiten in US-Ostküstenzeit) ─────────
+  ["nascar-oreilly", "Martinsville (Playoffs)", "Martinsville Speedway, Virginia", "2026-10-31", "15:00", "America/New_York", false],
+  ["nascar-oreilly", "Championship Race", "Homestead-Miami Speedway, Florida", "2026-11-07", "19:30", "America/New_York", false],
+
+  // ───────── NASCAR O'Reilly Series · 2027 (Startzeiten folgen) ─────────
+  ["nascar-oreilly", "Daytona", "Daytona International Speedway", "2027-02-20", "17:00", "America/New_York", false],
+  ["nascar-oreilly", "Atlanta", "EchoPark Speedway, Georgia", "2027-02-27", "17:00", "America/New_York", false],
+  ["nascar-oreilly", "Circuit of the Americas", "COTA, Austin, Texas", "2027-03-06", "17:00", "America/New_York", false],
+  ["nascar-oreilly", "Phoenix", "Phoenix Raceway, Arizona", "2027-03-13", "16:30", "America/New_York", false],
+  ["nascar-oreilly", "Las Vegas", "Las Vegas Motor Speedway", "2027-03-20", "16:30", "America/New_York", false],
+  ["nascar-oreilly", "Darlington", "Darlington Raceway, South Carolina", "2027-04-03", "17:00", "America/New_York", false],
+  ["nascar-oreilly", "Bristol", "Bristol Motor Speedway, Tennessee", "2027-04-10", "17:00", "America/New_York", false],
+  ["nascar-oreilly", "Martinsville", "Martinsville Speedway, Virginia", "2027-04-17", "19:00", "America/New_York", false],
+  ["nascar-oreilly", "Talladega", "Talladega Superspeedway, Alabama", "2027-04-24", "17:00", "America/New_York", false],
+  ["nascar-oreilly", "Texas", "Texas Motor Speedway", "2027-05-01", "17:00", "America/New_York", false],
+  ["nascar-oreilly", "Dover", "Dover Motor Speedway, Delaware", "2027-05-15", "17:00", "America/New_York", false],
+  ["nascar-oreilly", "North Wilkesboro", "North Wilkesboro Speedway, North Carolina", "2027-05-22", "17:00", "America/New_York", false],
+  ["nascar-oreilly", "Charlotte", "Charlotte Motor Speedway", "2027-05-29", "17:00", "America/New_York", false],
+  ["nascar-oreilly", "Nashville", "Nashville Superspeedway, Tennessee", "2027-06-05", "19:00", "America/New_York", false],
+  ["nascar-oreilly", "Pocono", "Pocono Raceway, Pennsylvania", "2027-06-12", "17:00", "America/New_York", false],
+  ["nascar-oreilly", "Chicagoland", "Chicagoland Speedway, Joliet, Illinois", "2027-06-26", "17:00", "America/New_York", false],
+  ["nascar-oreilly", "Iowa", "Iowa Speedway", "2027-07-03", "19:00", "America/New_York", false],
+  ["nascar-oreilly", "Sonoma", "Sonoma Raceway, Kalifornien", "2027-07-10", "17:00", "America/New_York", false],
+  ["nascar-oreilly", "Indianapolis", "Indianapolis Motor Speedway", "2027-07-24", "17:00", "America/New_York", false],
+  ["nascar-oreilly", "NASCAR San Diego", "Naval Base Coronado, Kalifornien", "2027-07-31", "17:00", "America/New_York", false],
+  ["nascar-oreilly", "Bristol (Nacht)", "Bristol Motor Speedway, Tennessee", "2027-08-13", "19:30", "America/New_York", false],
+  ["nascar-oreilly", "St. Louis", "World Wide Technology Raceway, Illinois", "2027-08-21", "17:00", "America/New_York", false],
+  ["nascar-oreilly", "Daytona (Nacht)", "Daytona International Speedway", "2027-08-27", "19:30", "America/New_York", false],
+  ["nascar-oreilly", "Darlington", "Darlington Raceway, South Carolina", "2027-09-04", "17:00", "America/New_York", false],
+  ["nascar-oreilly", "Richmond (Chase)", "Richmond Raceway, Virginia", "2027-09-10", "19:30", "America/New_York", false],
+  ["nascar-oreilly", "Watkins Glen", "Watkins Glen International, New York", "2027-09-18", "15:00", "America/New_York", false],
+  ["nascar-oreilly", "Kansas", "Kansas Speedway", "2027-10-02", "17:00", "America/New_York", false],
+  ["nascar-oreilly", "Las Vegas", "Las Vegas Motor Speedway", "2027-10-09", "19:00", "America/New_York", false],
+  ["nascar-oreilly", "Charlotte", "Charlotte Motor Speedway", "2027-10-16", "17:00", "America/New_York", false],
+  ["nascar-oreilly", "Phoenix", "Phoenix Raceway, Arizona", "2027-10-23", "17:00", "America/New_York", false],
+  ["nascar-oreilly", "Talladega", "Talladega Superspeedway, Alabama", "2027-10-30", "15:30", "America/New_York", false],
+  ["nascar-oreilly", "Martinsville", "Martinsville Speedway, Virginia", "2027-11-06", "15:00", "America/New_York", false],
+  ["nascar-oreilly", "Championship Race", "Homestead-Miami Speedway, Florida", "2027-11-13", "19:30", "America/New_York", false],
+
+  // ───────── NASCAR Truck Series · Rest 2026 (Zeiten in US-Ostküstenzeit) ─────────
+  ["nascar-trucks", "Martinsville (Playoffs)", "Martinsville Speedway, Virginia", "2026-10-30", "19:30", "America/New_York", false],
+  ["nascar-trucks", "Championship Race", "Homestead-Miami Speedway, Florida", "2026-11-06", "20:00", "America/New_York", false],
+
+  // ───────── NASCAR Truck Series · 2027 (Startzeiten folgen) ─────────
+  ["nascar-trucks", "Daytona", "Daytona International Speedway", "2027-02-19", "19:30", "America/New_York", false],
+  ["nascar-trucks", "Atlanta", "EchoPark Speedway, Georgia", "2027-02-27", "13:30", "America/New_York", false],
+  ["nascar-trucks", "St. Petersburg", "Straßenkurs St. Petersburg, Florida", "2027-03-06", "13:30", "America/New_York", false],
+  ["nascar-trucks", "Darlington", "Darlington Raceway, South Carolina", "2027-04-02", "19:30", "America/New_York", false],
+  ["nascar-trucks", "Bristol", "Bristol Motor Speedway, Tennessee", "2027-04-09", "20:00", "America/New_York", false],
+  ["nascar-trucks", "Texas", "Texas Motor Speedway", "2027-04-30", "20:00", "America/New_York", false],
+  ["nascar-trucks", "Kansas", "Kansas Speedway", "2027-05-08", "13:30", "America/New_York", false],
+  ["nascar-trucks", "North Wilkesboro", "North Wilkesboro Speedway, North Carolina", "2027-05-21", "20:00", "America/New_York", false],
+  ["nascar-trucks", "Charlotte", "Charlotte Motor Speedway", "2027-05-28", "20:00", "America/New_York", false],
+  ["nascar-trucks", "Nashville", "Nashville Superspeedway, Tennessee", "2027-06-04", "20:00", "America/New_York", false],
+  ["nascar-trucks", "Pocono", "Pocono Raceway, Pennsylvania", "2027-06-11", "17:00", "America/New_York", false],
+  ["nascar-trucks", "Michigan", "Michigan International Speedway", "2027-06-19", "13:30", "America/New_York", false],
+  ["nascar-trucks", "Lime Rock", "Lime Rock Park, Connecticut", "2027-07-10", "13:30", "America/New_York", false],
+  ["nascar-trucks", "Atlanta", "EchoPark Speedway, Georgia", "2027-07-17", "13:30", "America/New_York", false],
+  ["nascar-trucks", "Indianapolis Raceway Park", "Lucas Oil Indianapolis Raceway Park", "2027-07-23", "20:00", "America/New_York", false],
+  ["nascar-trucks", "Bristol (Nacht)", "Bristol Motor Speedway, Tennessee", "2027-08-12", "20:00", "America/New_York", false],
+  ["nascar-trucks", "Bowman Gray", "Bowman Gray Stadium, Winston-Salem", "2027-08-20", "20:00", "America/New_York", false],
+  ["nascar-trucks", "Canadian Tire Motorsport Park", "Bowmanville, Ontario, Kanada", "2027-09-05", "13:30", "America/New_York", false],
+  ["nascar-trucks", "New Hampshire (Chase)", "New Hampshire Motor Speedway", "2027-09-25", "13:30", "America/New_York", false],
+  ["nascar-trucks", "Kansas", "Kansas Speedway", "2027-10-01", "20:00", "America/New_York", false],
+  ["nascar-trucks", "Charlotte", "Charlotte Motor Speedway", "2027-10-15", "20:00", "America/New_York", false],
+  ["nascar-trucks", "Phoenix", "Phoenix Raceway, Arizona", "2027-10-22", "20:00", "America/New_York", false],
+  ["nascar-trucks", "Talladega", "Talladega Superspeedway, Alabama", "2027-10-29", "16:00", "America/New_York", false],
+  ["nascar-trucks", "Martinsville", "Martinsville Speedway, Virginia", "2027-11-05", "19:30", "America/New_York", false],
+  ["nascar-trucks", "Championship Race", "Homestead-Miami Speedway, Florida", "2027-11-12", "20:00", "America/New_York", false],
+
+  // ───────── NHRA · Rest 2026 (Zeit = Beginn der Eliminations am Schlusstag) ─────────
+  ["nhra", "Las Vegas Nationals", "The Strip at Las Vegas Motor Speedway", "2026-11-01", "11:00", "America/Los_Angeles", false],
+  ["nhra", "NHRA Finals", "Pomona Dragstrip, Kalifornien", "2026-11-15", "11:00", "America/Los_Angeles", false],
+
+  // ───────── NHRA · 2027 (Zeit = Beginn der Eliminations am Schlusstag) ─────────
+  ["nhra", "Winternationals", "Pomona Dragstrip, Kalifornien", "2027-02-21", "11:00", "America/Los_Angeles", false],
+  ["nhra", "Arizona Nationals", "Firebird Motorsports Park, Phoenix", "2027-02-28", "11:00", "America/Phoenix", false],
+  ["nhra", "Gatornationals", "Gainesville Raceway, Florida", "2027-03-14", "11:00", "America/New_York", false],
+  ["nhra", "4-Wide Nationals", "zMAX Dragway, Charlotte", "2027-04-04", "11:00", "America/New_York", false],
+  ["nhra", "Southern Nationals", "South Georgia Motorsports Park, Adel", "2027-05-02", "11:00", "America/New_York", false],
+  ["nhra", "Potomac Nationals", "Maryland International Raceway", "2027-05-23", "11:00", "America/New_York", false],
+  ["nhra", "New England Nationals", "New England Dragway, Epping", "2027-06-06", "11:00", "America/New_York", false],
+  ["nhra", "Thunder Valley Nationals", "Bristol Dragway, Tennessee", "2027-06-13", "11:00", "America/New_York", false],
+  ["nhra", "Summit Racing Nationals", "Summit Motorsports Park, Norwalk, Ohio", "2027-06-27", "11:00", "America/New_York", false],
+  ["nhra", "Route 66 Nationals", "Route 66 Raceway, Chicago", "2027-07-11", "11:00", "America/Chicago", false],
+  ["nhra", "Sonoma Nationals", "Sonoma Raceway, Kalifornien", "2027-07-25", "11:00", "America/Los_Angeles", false],
+  ["nhra", "Northwest Nationals", "Pacific Raceways, Seattle", "2027-08-01", "11:00", "America/Los_Angeles", false],
+  ["nhra", "Brainerd Nationals", "Brainerd International Raceway, Minnesota", "2027-08-22", "11:00", "America/Chicago", false],
+  ["nhra", "U.S. Nationals", "Lucas Oil Indianapolis Raceway Park", "2027-09-06", "11:00", "America/Indiana/Indianapolis", false],
+  ["nhra", "Great Lakes Nationals", "U.S. 131 Motorsports Park, Michigan", "2027-09-19", "11:00", "America/Detroit", false],
+  ["nhra", "Nationals at The Rock", "Rockingham Dragway, North Carolina", "2027-09-26", "11:00", "America/New_York", false],
+  ["nhra", "Midwest Nationals", "World Wide Technology Raceway, St. Louis", "2027-10-03", "11:00", "America/Chicago", false],
+  ["nhra", "FallNationals", "Texas Motorplex, Dallas", "2027-10-17", "11:00", "America/Chicago", false],
+  ["nhra", "Las Vegas Nationals", "The Strip at Las Vegas Motor Speedway", "2027-10-31", "11:00", "America/Los_Angeles", false],
+  ["nhra", "NHRA Finals", "Pomona Dragstrip, Kalifornien", "2027-11-14", "11:00", "America/Los_Angeles", false],
+
+  // ───────── BTCC · 2027 (Zeit = erstes von drei Rennen am Sonntag) ─────────
+  ["btcc", "Donington Park · Rennen 1–3", "Donington Park (National)", "2027-04-11", "11:30", "Europe/London", false],
+  ["btcc", "Brands Hatch Indy · Rennen 1–3", "Brands Hatch (Indy)", "2027-05-09", "11:30", "Europe/London", false],
+  ["btcc", "Snetterton · Rennen 1–3", "Snetterton (300)", "2027-05-30", "11:30", "Europe/London", false],
+  ["btcc", "Oulton Park · Rennen 1–3", "Oulton Park", "2027-06-13", "11:30", "Europe/London", false],
+  ["btcc", "Thruxton · Rennen 1–3", "Thruxton", "2027-07-25", "11:30", "Europe/London", false],
+  ["btcc", "Knockhill · Rennen 1–3", "Knockhill, Schottland", "2027-08-08", "11:30", "Europe/London", false],
+  ["btcc", "Croft · Rennen 1–3", "Croft Circuit", "2027-08-15", "11:30", "Europe/London", false],
+  ["btcc", "Donington Park GP · Rennen 1–3", "Donington Park (GP)", "2027-09-12", "11:30", "Europe/London", false],
+  ["btcc", "Silverstone · Rennen 1–3", "Silverstone Circuit", "2027-09-26", "11:30", "Europe/London", false],
+  ["btcc", "Brands Hatch GP · Finale · Rennen 1–3", "Brands Hatch (GP)", "2027-10-10", "11:30", "Europe/London", false],
+
+  // ───────── British GT · 2027 (vorläufig) ─────────
+  ["britishgt", "Snetterton · Rennen 1", "Snetterton (300)", "2027-04-11", "11:30", "Europe/London", false],
+  ["britishgt", "Snetterton · Rennen 2", "Snetterton (300)", "2027-04-11", "15:30", "Europe/London", false],
+  ["britishgt", "Oulton Park · Rennen 1", "Oulton Park International", "2027-05-29", "14:00", "Europe/London", false],
+  ["britishgt", "Oulton Park · Rennen 2", "Oulton Park International", "2027-05-31", "14:00", "Europe/London", false],
+  ["britishgt", "2 Stunden von Spa", "Circuit de Spa-Francorchamps, Belgien", "2027-06-20", "14:00", "Europe/Brussels", false],
+  ["britishgt", "3 Stunden von Silverstone (Silverstone 500)", "Silverstone Circuit", "2027-08-08", "13:30", "Europe/London", false],
+  ["britishgt", "2 Stunden von Brands Hatch", "Brands Hatch (GP)", "2027-09-12", "14:00", "Europe/London", false],
+  ["britishgt", "2 Stunden von Donington", "Donington Park (GP)", "2027-10-17", "14:00", "Europe/London", false],
+
+  // ───────── WRC2 · Rest 2026 (gleiche Rallyes wie WRC, Zeit = Rallye-Beginn) ─────────
+  ["wrc2", "Rallye Saudi-Arabien", "Dschidda, Saudi-Arabien", "2026-11-11", "08:00", "Asia/Riyadh", false, "2026-11-14"],
+
+  // ───────── WRC2 · 2027 ─────────
+  ["wrc2", "Rallye Monte-Carlo", "Monaco / Französische Alpen", "2027-01-21", "08:00", "Europe/Paris", false, "2027-01-24"],
+  ["wrc2", "Rally Sweden", "Umeå, Schweden", "2027-02-18", "08:00", "Europe/Stockholm", false, "2027-02-21"],
+  ["wrc2", "Safari Rally Kenya", "Naivasha, Kenia", "2027-03-18", "08:00", "Africa/Nairobi", false, "2027-03-21"],
+  ["wrc2", "Croatia Rally", "Kroatien", "2027-04-08", "08:00", "Europe/Zagreb", false, "2027-04-11"],
+  ["wrc2", "Rally Islas Canarias", "Gran Canaria, Spanien", "2027-05-06", "08:00", "Atlantic/Canary", false, "2027-05-09"],
+  ["wrc2", "Rally Japan", "Aichi / Gifu, Japan", "2027-06-03", "08:00", "Asia/Tokyo", false, "2027-06-06"],
+  ["wrc2", "Akropolis-Rallye", "Griechenland", "2027-06-24", "08:00", "Europe/Athens", false, "2027-06-27"],
+  ["wrc2", "Rally d'Italia Roma", "Rom, Italien", "2027-07-08", "08:00", "Europe/Rome", false, "2027-07-11"],
+  ["wrc2", "Rally Estonia", "Tartu, Estland", "2027-07-22", "08:00", "Europe/Tallinn", false, "2027-07-25"],
+  ["wrc2", "Rally Finland", "Jyväskylä, Finnland", "2027-07-29", "08:00", "Europe/Helsinki", false, "2027-08-01"],
+  ["wrc2", "Rally USA", "Knoxville, Tennessee, USA", "2027-08-26", "08:00", "America/New_York", false, "2027-08-29"],
+  ["wrc2", "Rally Scotland", "Aberdeen, Schottland", "2027-09-30", "08:00", "Europe/London", false, "2027-10-03"],
+  ["wrc2", "Rally del Paraguay", "Encarnación, Paraguay", "2027-10-21", "08:00", "America/Asuncion", false, "2027-10-24"],
+  ["wrc2", "Rally Chile Biobío", "Concepción, Chile", "2027-11-04", "08:00", "America/Santiago", false, "2027-11-07"],
+  ["wrc2", "Rallye Saudi-Arabien", "Dschidda, Saudi-Arabien", "2027-11-25", "08:00", "Asia/Riyadh", false, "2027-11-28"],
+
+  // ───────── MXGP · 2027 (vorläufig; Zeit = erster MXGP-Lauf am Sonntag) ─────────
+  ["mxgp", "MXGP von Andalusien", "Andalusien, Spanien", "2027-02-28", "13:15", "Europe/Madrid", false],
+  ["mxgp", "MXGP von Argentinien", "Bariloche, Argentinien", "2027-03-14", "13:15", "America/Argentina/Buenos_Aires", false],
+  ["mxgp", "MXGP von Italien", "Montevarchi, Italien", "2027-03-28", "13:15", "Europe/Rome", false],
+  ["mxgp", "MXGP von Sardinien", "Riola Sardo, Italien", "2027-04-04", "13:15", "Europe/Rome", false],
+  ["mxgp", "MXGP von Spanien", "Spanien (Strecke folgt)", "2027-04-18", "13:15", "Europe/Madrid", false],
+  ["mxgp", "MXGP von Trentino", "Trentino, Italien", "2027-04-25", "13:15", "Europe/Rome", false],
+  ["mxgp", "MXGP von China", "Shanghai, China", "2027-05-02", "13:15", "Asia/Shanghai", false],
+  ["mxgp", "MXGP von Portugal", "Portugal (Strecke folgt)", "2027-05-23", "13:15", "Europe/Lisbon", false],
+  ["mxgp", "MXGP von Frankreich", "Saint-Jean-d'Angély, Frankreich", "2027-05-30", "13:15", "Europe/Paris", false],
+  ["mxgp", "MXGP von Lettland", "Ķegums, Lettland", "2027-06-13", "13:15", "Europe/Riga", false],
+  ["mxgp", "MXGP von Deutschland", "Teutschenthal", "2027-06-20", "13:15", "Europe/Berlin", false],
+  ["mxgp", "MXGP von Großbritannien", "Foxhill, Großbritannien", "2027-06-27", "13:15", "Europe/London", false],
+  ["mxgp", "MXGP von Tschechien", "Loket, Tschechien", "2027-07-25", "13:15", "Europe/Prague", false],
+  ["mxgp", "MXGP von Flandern", "Lommel, Belgien", "2027-08-01", "13:15", "Europe/Brussels", false],
+  ["mxgp", "MXGP von Schweden", "Uddevalla, Schweden", "2027-08-15", "13:15", "Europe/Stockholm", false],
+  ["mxgp", "MXGP der Niederlande", "Arnheim, Niederlande", "2027-08-22", "13:15", "Europe/Amsterdam", false],
+  ["mxgp", "MXGP der Türkei", "Afyonkarahisar, Türkei", "2027-09-05", "13:15", "Europe/Istanbul", false],
+  ["mxgp", "MXGP von Australien", "Darwin, Australien", "2027-09-19", "13:15", "Australia/Darwin", false],
+  ["mxgp", "MXGP der Schweiz", "Schweiz (Strecke folgt)", "2027-10-03", "13:15", "Europe/Zurich", false],
 ];
 
 // Bekannte Rennen ohne festes Datum (werden in der App als „Termin folgt" gelistet)
 const OFFEN = [
-  ["indycar", "Nashville, Portland, Markham (Toronto), Washington D.C., Milwaukee und Finale in Laguna Seca"],
-  ["wrc", "Schweden, Kenia, Kroatien, Kanaren, Japan, Griechenland, Estland, Finnland, Paraguay, Chile"],
   ["supercars", "Kalender 2027 noch nicht veröffentlicht (Verhandlungen laufen, ca. 14 Läufe erwartet)"],
-  ["f1", "Sprint-Wochenenden 2027 noch nicht bekanntgegeben"],
+  ["f1", "Sprint-Wochenenden 2027: Bahrain, Australien, Japan, Kanada, Monaco, Großbritannien, Italien, São Paulo, Katar, Abu Dhabi"],
+  ["indynxt", "Saison 2026 beendet; Kalender 2027 noch nicht veröffentlicht (folgt in den nächsten Wochen)"],
+  ["nls", "Saison 2026 beendet; Kalender 2027 noch nicht veröffentlicht"],
+  ["f1academy", "Kalender 2027 noch nicht veröffentlicht (Rennen im Rahmen der Formel 1)"],
+  ["supercup", "Saison 2026 beendet; Kalender 2027 noch nicht veröffentlicht (Rennen im Rahmen europäischer F1-Läufe)"],
+  ["erc", "Saison 2026 beendet; Kalender 2027 noch nicht veröffentlicht"],
+  ["worldrx", "Seit 2026 keine Rallycross-WM mehr, die Spitzenklasse fährt als Europameisterschaft (Euro RX). Kalender 2027 noch offen"],
+  ["superformula", "2027: Ob Suzuka, Motegi und Fuji wieder Doppelrennen (Samstag + Sonntag) sind, ist noch nicht bestätigt"],
+  ["mxgp", "2027: ein weiterer Lauf am 12. September, Gastgeberland noch offen"],
 ];
