@@ -101,7 +101,7 @@ const SERIEN = [
   { id: "lmcup",          name: "Le Mans Cup",          info: "LMP3- und GT3-Rennen im Rahmen der ELMS",     farbe: "#7d6fd0", kurz: "LMC",   dauer: 120, kategorie: "sportwagen" },
   { id: "24h-series",     name: "24H Series",           info: "12- und 24-Stunden-Rennen für GT und Tourenwagen", farbe: "#9c7a3c", kurz: "24HS", dauer: 720, kategorie: "sportwagen" },
   { id: "worldssp",       name: "WorldSSP",             info: "Supersport-WM im Rahmen der WorldSBK",        farbe: "#d1495b", kurz: "WSSP",  dauer: 35, kategorie: "motorrad" },
-  { id: "ewc",            name: "Langstrecken-WM Motorrad (EWC)", info: "24h Le Mans, Suzuka 8h, Bol d'Or …", farbe: "#8f2d56", kurz: "EWC",   dauer: 480, kategorie: "motorrad" },
+  { id: "ewc",            name: "FIM EWC",              info: "Motorrad-Langstrecken-WM: 24h Le Mans, Suzuka 8h, Bol d'Or",  farbe: "#8f2d56", kurz: "EWC",   dauer: 480, kategorie: "motorrad" },
   { id: "iomtt",          name: "Isle of Man TT",       info: "Straßenrennen auf der Isle of Man",           farbe: "#2e7d32", kurz: "TT",    dauer: 90, kategorie: "motorrad" },
   { id: "supercross",     name: "AMA Supercross",       info: "Stadion-Supercross in den USA",              farbe: "#f2a900", kurz: "SX",    dauer: 180, kategorie: "motorrad" },
   { id: "promx",          name: "AMA Pro Motocross",    info: "US-Motocross-Meisterschaft im Sommer",        farbe: "#a8761c", kurz: "MX",    dauer: 240, kategorie: "motorrad" },
