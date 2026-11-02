@@ -19,19 +19,19 @@
   GEPRUEFT: pro Serie das Datum des letzten Abgleichs mit den offiziellen Quellen
 */
 
-const STAND = "2026-10-29";
+const STAND = "2026-11-02";
 
 // Wann die Termine jeder Serie zuletzt mit den offiziellen Quellen abgeglichen wurden (JJJJ-MM-TT)
 const GEPRUEFT = {
-  f1: "2026-10-25", nascar: "2026-10-25", indycar: "2026-10-28", dtm: "2026-10-25",
-  wec: "2026-10-25", wrc: "2026-10-28", imsa: "2026-10-25", supercars: "2026-10-25",
-  "formel-e": "2026-10-28", f2: "2026-10-28", f3: "2026-10-28", f1academy: "2026-10-28", superformula: "2026-10-28", indynxt: "2026-10-28",
-  motogp: "2026-10-28", moto2: "2026-10-28", moto3: "2026-10-28", wsbk: "2026-10-28", mxgp: "2026-10-28", gtwc: "2026-10-28",
-  igtc: "2026-10-28", elms: "2026-10-28", supergt: "2026-10-28", britishgt: "2026-10-28", nls: "2026-10-28", "24h-lemans": "2026-10-28",
-  "24h-nbr": "2026-10-28", "24h-spa": "2026-10-28", "24h-daytona": "2026-10-28", "24h-dubai": "2026-10-29", "nascar-oreilly": "2026-10-28", "nascar-trucks": "2026-10-28",
-  nhra: "2026-10-28", btcc: "2026-10-28", supercup: "2026-10-28", wrc2: "2026-10-28", erc: "2026-10-28", worldrx: "2026-10-28",
-  "gtwc-america": "2026-10-29", "gtwc-asia": "2026-10-29", "gtwc-australia": "2026-10-29", "alms": "2026-10-29", "lmcup": "2026-10-29", "24h-series": "2026-10-29", "worldssp": "2026-10-29", "ewc": "2026-10-29",
-  "iomtt": "2026-10-29", "supercross": "2026-10-29", "promx": "2026-10-29", "speedway": "2026-10-29", "w2rc": "2026-10-29", "macau": "2026-10-29", "roc": "2026-10-29", "pikes": "2026-10-29",
+  f1: "2026-11-02", nascar: "2026-11-02", indycar: "2026-11-02", dtm: "2026-10-25",
+  wec: "2026-11-02", wrc: "2026-11-02", imsa: "2026-10-25", supercars: "2026-11-02",
+  "formel-e": "2026-11-02", f2: "2026-11-02", f3: "2026-10-28", f1academy: "2026-11-02", superformula: "2026-10-28", indynxt: "2026-11-02",
+  motogp: "2026-11-02", moto2: "2026-11-02", moto3: "2026-11-02", wsbk: "2026-10-28", mxgp: "2026-11-02", gtwc: "2026-10-28",
+  igtc: "2026-10-28", elms: "2026-10-28", supergt: "2026-10-28", britishgt: "2026-10-28", nls: "2026-11-02", "24h-lemans": "2026-10-28",
+  "24h-nbr": "2026-10-28", "24h-spa": "2026-10-28", "24h-daytona": "2026-10-28", "24h-dubai": "2026-10-29", "nascar-oreilly": "2026-11-02", "nascar-trucks": "2026-11-02",
+  nhra: "2026-10-28", btcc: "2026-10-28", supercup: "2026-11-02", wrc2: "2026-11-02", erc: "2026-11-02", worldrx: "2026-11-02",
+  "gtwc-america": "2026-10-29", "gtwc-asia": "2026-10-29", "gtwc-australia": "2026-10-29", "alms": "2026-10-29", "lmcup": "2026-10-29", "24h-series": "2026-11-02", "worldssp": "2026-10-29", "ewc": "2026-10-29",
+  "iomtt": "2026-10-29", "supercross": "2026-11-02", "promx": "2026-10-29", "speedway": "2026-11-02", "w2rc": "2026-11-02", "macau": "2026-11-02", "roc": "2026-10-29", "pikes": "2026-10-29",
 };
 
 // Gruppen im Auswahlmenü der App, in dieser Reihenfolge. Jede Serie nennt ihre Gruppe in `kategorie`.
@@ -228,7 +228,7 @@ const RENNEN = [
   ["dtm", "Hockenheim · Rennen 2", "Hockenheimring Baden-Württemberg", "2027-10-10", "13:30", "Europe/Berlin", false],
 
   // ───────── FIA WEC · Rest 2026 ─────────
-  ["wec", "8 Stunden von Bahrain", "Bahrain International Circuit", "2026-11-07", "14:00", "Asia/Bahrain", false],
+  ["wec", "6 Stunden von Monza (Finale, statt Bahrain)", "Autodromo Nazionale Monza, Italien", "2026-11-08", "11:00", "Europe/Rome", true],
   // ───────── FIA WEC · 2027 ─────────
   ["wec", "Qatar 1812 km", "Lusail International Circuit, Katar", "2027-03-27", "11:00", "Asia/Qatar", false],
   ["wec", "6 Stunden von Imola", "Autodromo Enzo e Dino Ferrari, Italien", "2027-04-11", "13:00", "Europe/Rome", false],
@@ -241,7 +241,6 @@ const RENNEN = [
   ["wec", "8 Stunden von Bahrain", "Bahrain International Circuit", "2027-11-06", "14:00", "Asia/Bahrain", false],
 
   // ───────── WRC · Rest 2026 (Zeit = Rallye-Beginn) ─────────
-  ["wrc", "Rallye Saudi-Arabien", "Dschidda, Saudi-Arabien", "2026-11-11", "08:00", "Asia/Riyadh", false, "2026-11-14"],
   // ───────── WRC · 2027 (Zeit = Rallye-Beginn) ─────────
   ["wrc", "Rallye Monte-Carlo", "Monaco / Französische Alpen", "2027-01-21", "08:00", "Europe/Paris", false, "2027-01-24"],
   ["wrc", "Rally Sweden", "Umeå, Schweden", "2027-02-18", "08:00", "Europe/Stockholm", false, "2027-02-21"],
@@ -527,7 +526,7 @@ const RENNEN = [
 
   // ───────── NASCAR O'Reilly Series · Rest 2026 (Zeiten in US-Ostküstenzeit) ─────────
   ["nascar-oreilly", "Martinsville (Playoffs)", "Martinsville Speedway, Virginia", "2026-10-31", "15:00", "America/New_York", false],
-  ["nascar-oreilly", "Championship Race", "Homestead-Miami Speedway, Florida", "2026-11-07", "19:30", "America/New_York", false],
+  ["nascar-oreilly", "Championship Race", "Homestead-Miami Speedway, Florida", "2026-11-07", "17:00", "America/New_York", true],
 
   // ───────── NASCAR O'Reilly Series · 2027 (Startzeiten folgen) ─────────
   ["nascar-oreilly", "Daytona", "Daytona International Speedway", "2027-02-20", "17:00", "America/New_York", false],
@@ -566,7 +565,7 @@ const RENNEN = [
 
   // ───────── NASCAR Truck Series · Rest 2026 (Zeiten in US-Ostküstenzeit) ─────────
   ["nascar-trucks", "Martinsville (Playoffs)", "Martinsville Speedway, Virginia", "2026-10-30", "19:30", "America/New_York", false],
-  ["nascar-trucks", "Championship Race", "Homestead-Miami Speedway, Florida", "2026-11-06", "20:00", "America/New_York", false],
+  ["nascar-trucks", "Championship Race", "Homestead-Miami Speedway, Florida", "2026-11-06", "19:30", "America/New_York", true],
 
   // ───────── NASCAR Truck Series · 2027 (Startzeiten folgen) ─────────
   ["nascar-trucks", "Daytona", "Daytona International Speedway", "2027-02-19", "19:30", "America/New_York", false],
@@ -621,6 +620,25 @@ const RENNEN = [
   ["nhra", "Las Vegas Nationals", "The Strip at Las Vegas Motor Speedway", "2027-10-31", "11:00", "America/Los_Angeles", false],
   ["nhra", "NHRA Finals", "Pomona Dragstrip, Kalifornien", "2027-11-14", "11:00", "America/Los_Angeles", false],
 
+  // ───────── NLS · 2027 (Startzeiten geschätzt) ─────────
+  ["nls", "NLS1", "Nürburgring-Nordschleife", "2027-03-20", "12:00", "Europe/Berlin", false],
+  ["nls", "NLS2", "Nürburgring-Nordschleife", "2027-04-17", "12:00", "Europe/Berlin", false],
+  ["nls", "NLS3", "Nürburgring-Nordschleife", "2027-07-03", "12:00", "Europe/Berlin", false],
+  ["nls", "NLS4 (6 Stunden)", "Nürburgring-Nordschleife", "2027-08-07", "12:00", "Europe/Berlin", false],
+  ["nls", "NLS5 (Doppelveranstaltung, Rennen 1)", "Nürburgring-Nordschleife", "2027-09-11", "12:00", "Europe/Berlin", false],
+  ["nls", "NLS6 (Doppelveranstaltung, Rennen 2)", "Nürburgring-Nordschleife", "2027-09-12", "12:00", "Europe/Berlin", false],
+  ["nls", "NLS7", "Nürburgring-Nordschleife", "2027-09-25", "12:00", "Europe/Berlin", false],
+  ["nls", "NLS8 (Finale)", "Nürburgring-Nordschleife", "2027-10-09", "12:00", "Europe/Berlin", false],
+  // ───────── Porsche Supercup · 2027 (Startzeiten geschätzt) ─────────
+  ["supercup", "Monaco", "Circuit de Monaco", "2027-06-06", "10:05", "Europe/Monaco", false],
+  ["supercup", "Portugal", "Autódromo Internacional do Algarve, Portimão", "2027-06-20", "11:30", "Europe/Lisbon", false],
+  ["supercup", "Österreich", "Red Bull Ring, Spielberg", "2027-07-11", "11:30", "Europe/Vienna", false],
+  ["supercup", "Belgien", "Circuit de Spa-Francorchamps", "2027-07-25", "11:30", "Europe/Brussels", false],
+  ["supercup", "Ungarn", "Hungaroring, Budapest", "2027-08-01", "11:30", "Europe/Budapest", false],
+  ["supercup", "Italien", "Autodromo Nazionale Monza", "2027-09-05", "11:30", "Europe/Rome", false],
+  ["supercup", "Spanien", "MADRING, Madrid", "2027-09-12", "11:30", "Europe/Madrid", false],
+  ["supercup", "Türkei · Finale", "Istanbul Park", "2027-10-03", "11:30", "Europe/Istanbul", false],
+
   // ───────── BTCC · 2027 (Zeit = erstes von drei Rennen am Sonntag) ─────────
   ["btcc", "Donington Park · Rennen 1–3", "Donington Park (National)", "2027-04-11", "11:30", "Europe/London", false],
   ["btcc", "Brands Hatch Indy · Rennen 1–3", "Brands Hatch (Indy)", "2027-05-09", "11:30", "Europe/London", false],
@@ -644,7 +662,6 @@ const RENNEN = [
   ["britishgt", "2 Stunden von Donington", "Donington Park (GP)", "2027-10-17", "14:00", "Europe/London", false],
 
   // ───────── WRC2 · Rest 2026 (gleiche Rallyes wie WRC, Zeit = Rallye-Beginn) ─────────
-  ["wrc2", "Rallye Saudi-Arabien", "Dschidda, Saudi-Arabien", "2026-11-11", "08:00", "Asia/Riyadh", false, "2026-11-14"],
 
   // ───────── WRC2 · 2027 ─────────
   ["wrc2", "Rallye Monte-Carlo", "Monaco / Französische Alpen", "2027-01-21", "08:00", "Europe/Paris", false, "2027-01-24"],
@@ -826,6 +843,7 @@ const RENNEN = [
   ["speedway", "GP von Australien · 2 (Finale)", "Gillman Speedway, Adelaide", "2027-10-30", "19:00", "Australia/Adelaide", false],
 
   // ───────── Rallye-Raid-WM (W2RC) · 2027 (Zeit = Start der ersten Etappe, geschätzt) ─────────
+  ["w2rc", "Rallye Dakar", "Loulé (Portugal) bis Marrakesch (Marokko)", "2027-01-09", "08:00", "Europe/Lisbon", false, "2027-01-23"],
   ["w2rc", "Abu Dhabi Desert Challenge", "Abu Dhabi, VAE", "2027-03-21", "08:00", "Asia/Dubai", false, "2027-03-26"],
   ["w2rc", "South African Safari Rally", "Südafrika", "2027-06-14", "08:00", "Africa/Johannesburg", false, "2027-06-19"],
   ["w2rc", "Rally-Raid Portugal", "Portugal", "2027-09-21", "08:00", "Europe/Lisbon", false, "2027-09-26"],
@@ -849,16 +867,15 @@ const OFFEN = [
   ["supercars", "Kalender 2027 noch nicht veröffentlicht (Verhandlungen laufen, ca. 14 Läufe erwartet)"],
   ["f1", "Sprint-Wochenenden 2027: Bahrain, Australien, Japan, Kanada, Monaco, Großbritannien, Italien, São Paulo, Katar, Abu Dhabi"],
   ["indynxt", "Saison 2026 beendet; Kalender 2027 noch nicht veröffentlicht (folgt in den nächsten Wochen)"],
-  ["nls", "Saison 2026 beendet; Kalender 2027 noch nicht veröffentlicht"],
   ["f1academy", "Kalender 2027 noch nicht veröffentlicht (Rennen im Rahmen der Formel 1)"],
-  ["supercup", "Saison 2026 beendet; Kalender 2027 noch nicht veröffentlicht (Rennen im Rahmen europäischer F1-Läufe)"],
   ["erc", "Saison 2026 beendet; Kalender 2027 noch nicht veröffentlicht"],
   ["worldrx", "Seit 2026 keine Rallycross-WM mehr, die Spitzenklasse fährt als Europameisterschaft (Euro RX). Kalender 2027 noch offen"],
   ["superformula", "2027: Ob Suzuka, Motegi und Fuji wieder Doppelrennen (Samstag + Sonntag) sind, ist noch nicht bestätigt"],
   ["mxgp", "2027: ein weiterer Lauf am 12. September, Gastgeberland noch offen"],
   ["supercross", "SuperMotocross-Playoffs 2027 am 11., 18. und 25. September, Orte werden im Januar bekannt gegeben"],
-  ["w2rc", "Dakar 2027 wird aus Saudi-Arabien verlegt (Auftakt wohl am 9. Januar in Europa, dann Marokko). Offizieller Termin und Route folgen"],
   ["gtwc-australia", "2027: sechster Lauf noch offen"],
   ["speedway", "2027: Lauf am 12. Juni, Ort noch offen"],
+  ["wrc", "Rallye Saudi-Arabien 2026 (11.–14. November) zählt nicht mehr zur WM, die Saison 2026 endete mit 13 Läufen"],
+  ["formel-e", "Saisonauftakt in Dschidda (18./19. Dezember) wegen der Lage in der Region unsicher, eine Verschiebung ist im Gespräch"],
   ["24h-series", "Middle East Trophy 2026/27: Yas 12h und 6h Abu Dhabi wegen der Lage am Golf unsicher, Kyalami ersetzt die 24h Dubai"],
 ];
