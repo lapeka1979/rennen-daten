@@ -1,0 +1,70 @@
+name: Terminprüfung
+
+# Prüft die Termine auf Fehler, Dubletten und Lücken.
+# Fehler machen den Check rot. Bei Push auf main und einmal pro Woche wird außerdem das Issue
+# "Terminprüfung: Hinweise" angelegt oder aktualisiert und wieder geschlossen, sobald alles passt.
+on:
+  push:
+    branches: [main]
+    paths: ["daten.js", "daten.json", "tools/**", ".github/workflows/terminpruefung.yml"]
+  pull_request:
+    paths: ["daten.js", "daten.json", "tools/**", ".github/workflows/terminpruefung.yml"]
+  schedule:
+    - cron: "30 9 * * 1"   # montags 10:30 / 11:30 Uhr deutscher Zeit, nach der wöchentlichen Pflege
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: terminpruefung-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pruefen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Termine prüfen
+        id: pruefung
+        run: |
+          set +e
+          node tools/pruefen.js daten.js daten.json --bericht bericht.md
+          echo "code=$?" >> "$GITHUB_OUTPUT"
+          cat bericht.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Issue aktualisieren
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FEHLER: ${{ steps.pruefung.outputs.fehler }}
+          HINWEISE: ${{ steps.pruefung.outputs.hinweise }}
+          LAUF: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          TITEL="Terminprüfung: Hinweise"
+          gh label create terminpruefung --color d93f0b --description "Automatische Terminprüfung" 2>/dev/null || true
+          NR=$(gh issue list --state open --label terminpruefung --json number,title \
+               --jq ".[] | select(.title == \"$TITEL\") | .number" | head -n1)
+          { cat bericht.md; echo; echo "_Automatisch erstellt von der [Terminprüfung]($LAUF). Wird bei jedem Lauf aktualisiert und geschlossen, sobald es nichts mehr zu melden gibt._"; } > issue.md
+          if [ "${FEHLER:-0}" = "0" ] && [ "${HINWEISE:-0}" = "0" ]; then
+            if [ -n "$NR" ]; then
+              gh issue comment "$NR" --body "Alles in Ordnung, keine Fehler und keine Hinweise mehr. ([Lauf]($LAUF))"
+              gh issue close "$NR" --reason completed
+            fi
+          elif [ -n "$NR" ]; then
+            gh issue edit "$NR" --body-file issue.md
+          else
+            gh issue create --title "$TITEL" --label terminpruefung --body-file issue.md
+          fi
+
+      - name: Ergebnis
+        if: steps.pruefung.outputs.code != '0'
+        run: |
+          echo "::error::Die Terminprüfung hat Fehler gefunden, Details in der Zusammenfassung."
+          exit 1

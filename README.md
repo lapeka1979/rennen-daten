@@ -18,3 +18,19 @@ das Issue als erledigt oder, wenn es keine offiziellen Termine gibt, als „not 
 Manche Rennen stehen in mehreren Serien, z. B. die 24h-Rennen (eigene Serie und WEC, IMSA, GTWC, IGTC,
 24H Series) oder die Texas 8 Stunden (IGTC und GT World Challenge America). Die App führt sie über
 Startzeit und Ort zusammen. Diese Zeilen müssen deshalb bis auf das Serienkürzel identisch bleiben.
+
+## Automatische Prüfung
+
+`node tools/pruefen.js` prüft `daten.js` und `daten.json`, bevor etwas in die App gelangt:
+
+- **Fehler** (Check wird rot): ungültiges Datum, Startzeit oder Zeitzone, unbekannte Serie oder
+  Kategorie, doppelte Rennen, gemeinsame Rennen (z. B. 24h) die nicht in allen Serien gleich sind,
+  `GEPRUEFT` nach `STAND`, und `daten.json` passt nicht zu `daten.js`.
+- **Hinweise**: Serie ohne kommende Rennen und ohne Eintrag in `OFFEN`, Saison endet in weniger als
+  60 Tagen ohne Folgetermine, mehr als 150 Tage Pause innerhalb einer Serie, Serie länger als
+  21 Tage nicht geprüft.
+
+Die GitHub Action „Terminprüfung“ läuft bei jedem Push und Pull Request, der die Daten ändert, und
+montags nach der wöchentlichen Pflege. Sie hält das Issue „Terminprüfung: Hinweise“ (Label
+`terminpruefung`) aktuell und schließt es, sobald nichts mehr zu melden ist. Vor jedem Push
+`node tools/pruefen.js` lokal ausführen.
