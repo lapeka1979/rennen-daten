@@ -17,9 +17,10 @@
   OFFEN listet bekannte Rennen ohne festes Datum.
   Stand: siehe STAND (bei jeder Änderung hochsetzen, Format JJJJ-MM-TT),
   GEPRUEFT: pro Serie das Datum des letzten Abgleichs mit den offiziellen Quellen
+  SENDER/UEBERTRAGUNG: wo man die Rennen in Deutschland live sieht (optional, pro Serie oder pro Rennen)
 */
 
-const STAND = "2026-11-02";
+const STAND = "2026-11-05";
 
 // Wann die Termine jeder Serie zuletzt mit den offiziellen Quellen abgeglichen wurden (JJJJ-MM-TT)
 const GEPRUEFT = {
@@ -46,6 +47,58 @@ const KATEGORIEN = [
   { id: "rallye",      name: "Rallye & Offroad" },
   { id: "events",      name: "Events & Klassiker" },
 ];
+
+// Wo man die Rennen in Deutschland live sieht. `frei: true` = ohne Abo (Free-TV oder kostenloser Stream).
+// Die App zeigt die Sender im Termin, beim Start ("Jetzt live") und in der Start-Erinnerung als Link.
+const SENDER = {
+  sky:        { name: "Sky",             url: "https://sport.sky.de/" },
+  wow:        { name: "WOW",             url: "https://www.wowtv.de/sport" },
+  rtl:        { name: "RTL / RTL+",      url: "https://plus.rtl.de/", frei: true },
+  df1:        { name: "DF1",             url: "https://www.df1.de/", frei: true },
+  joyn:       { name: "ProSieben / Joyn", url: "https://www.joyn.de/", frei: true },
+  eurosport:  { name: "Eurosport",       url: "https://www.eurosport.de/" },
+  hbomax:     { name: "HBO Max",         url: "https://www.hbomax.com/de/de" },
+  sport1:     { name: "Sport1",          url: "https://www.sport1.de/", frei: true },
+  sportdigital: { name: "sportdigital",  url: "https://www.sportdigital.de/" },
+  motorvision:  { name: "Motorvision+",  url: "https://www.motorvision.tv/" },
+  servustv:   { name: "ServusTV",        url: "https://www.servustv.com/", frei: true },
+  motogppass: { name: "MotoGP VideoPass", url: "https://www.motogp.com/en/videopass" },
+  sbkpass:    { name: "WorldSBK VideoPass", url: "https://www.worldsbk.com/en/videopass" },
+  wecplus:    { name: "FIAWEC+",         url: "https://plus.fiawec.com/" },
+  rallytv:    { name: "Rally.TV",        url: "https://www.rally.tv/" },
+  redbulltv:  { name: "Red Bull TV",     url: "https://www.redbull.com/de-de/tv", frei: true },
+  ytgtworld:  { name: "GT World (YouTube)", url: "https://www.youtube.com/@gtworld", frei: true },
+  ytimsa:     { name: "IMSA (YouTube)",  url: "https://www.youtube.com/@IMSAOfficial", frei: true },
+  ytbtcc:     { name: "BTCC (YouTube)",  url: "https://www.youtube.com/@officialbtcc", frei: true },
+  ytsupercup: { name: "Supercup (YouTube)", url: "https://www.youtube.com/channel/UC5Z5lkCXe-llUPok-JymKnw", frei: true },
+  ytf1academy: { name: "F1 Academy (YouTube)", url: "https://www.youtube.com/@f1academy", frei: true },
+  sfgo:       { name: "SFgo",            url: "https://superformula.net/sfgo/en/" },
+  ytsf:       { name: "Super Formula (YouTube)", url: "https://www.youtube.com/@superformula_official", frei: true },
+  yterc:      { name: "ERC (YouTube)",   url: "https://www.youtube.com/@FIAERC/streams", frei: true },
+};
+
+// Welche Sender zeigen welche Serie (Stand: Saison 2026, Deutschland). Schlüssel "serie|datum"
+// (Renntag wie in RENNEN) gilt für ein einzelnes Rennen und ersetzt dort die Serien-Angabe,
+// z. B. Formel-1-Rennen, die RTL zusätzlich frei zeigt. Serien ohne Eintrag zeigen keine Sender.
+const UEBERTRAGUNG = {
+  f1: ["sky", "wow"],
+  "f1|2026-11-21": ["rtl", "sky", "wow"],
+  f2: ["sky", "wow"], f3: ["sky", "wow"], f1academy: ["sky", "ytf1academy"], supercup: ["ytsupercup"],
+  "formel-e": ["df1", "eurosport", "hbomax"],
+  indycar: ["sky", "motorvision"],
+  superformula: ["ytsf", "sfgo"],
+  motogp: ["df1", "sky", "wow", "motogppass"], moto2: ["df1", "sky", "wow", "motogppass"], moto3: ["df1", "sky", "wow", "motogppass"],
+  wsbk: ["servustv", "sbkpass"], worldssp: ["servustv", "sbkpass"],
+  dtm: ["joyn"],
+  wec: ["sport1", "eurosport", "wecplus"], "24h-lemans": ["sport1", "eurosport", "wecplus"],
+  elms: ["sportdigital", "motorvision", "wecplus"],
+  imsa: ["ytimsa", "motorvision"], "24h-daytona": ["ytimsa", "motorvision"],
+  gtwc: ["ytgtworld"], igtc: ["ytgtworld"], "24h-spa": ["ytgtworld"], "gtwc-america": ["ytgtworld"], "gtwc-asia": ["ytgtworld"],
+  nascar: ["sportdigital"],
+  btcc: ["ytbtcc"],
+  wrc: ["sky", "rallytv", "redbulltv"], wrc2: ["rallytv", "redbulltv"], erc: ["rallytv", "yterc"],
+  w2rc: ["eurosport", "redbulltv"],
+};
 
 const SERIEN = [
   { id: "f1",       name: "Formel 1",                 info: "Internationale Formelrennwagen",            farbe: "#d6211f", kategorie: "formel" },
