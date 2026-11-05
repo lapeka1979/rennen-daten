@@ -15,11 +15,13 @@
       bis        optional: letzter Tag bei mehrtägigen Events (Rallyes)
 
   OFFEN listet bekannte Rennen ohne festes Datum.
+  AENDERUNGEN vermerkt verschobene und abgesagte Rennen sowie geänderte Startzeiten
+  (die App markiert sie und meldet sie einmal an alle, die der Serie folgen; Format siehe unten).
   Stand: siehe STAND (bei jeder Änderung hochsetzen, Format JJJJ-MM-TT),
   GEPRUEFT: pro Serie das Datum des letzten Abgleichs mit den offiziellen Quellen
 */
 
-const STAND = "2026-11-02";
+const STAND = "2026-11-05";
 
 // Wann die Termine jeder Serie zuletzt mit den offiziellen Quellen abgeglichen wurden (JJJJ-MM-TT)
 const GEPRUEFT = {
@@ -878,4 +880,22 @@ const OFFEN = [
   ["wrc", "Rallye Saudi-Arabien 2026 (11.–14. November) zählt nicht mehr zur WM, die Saison 2026 endete mit 13 Läufen"],
   ["formel-e", "Saisonauftakt in Dschidda (18./19. Dezember) wegen der Lage in der Region unsicher, eine Verschiebung ist im Gespräch"],
   ["24h-series", "Middle East Trophy 2026/27: Yas 12h und 6h Abu Dhabi wegen der Lage am Golf unsicher, Kyalami ersetzt die 24h Dubai"],
+];
+
+// Terminänderungen: Die App markiert das Rennen („verschoben“, „neue Startzeit“, „abgesagt“) und meldet die
+// Änderung einmal per Hinweis an alle, die der Serie folgen. Ein Eintrag pro Serie und Rennen:
+//   serie     Kürzel aus SERIEN (bei Rennen in mehreren Serien je Serie ein Eintrag)
+//   datum     "JJJJ-MM-TT" – Renntag wie in RENNEN; bei „abgesagt“ der bisherige Renntag
+//   art       "verschoben" (Datum oder Strecke geändert), "startzeit" (nur die Startzeit) oder "abgesagt"
+//   titel     Name des Rennens (wie in RENNEN, bei „abgesagt“ der bisherige)
+//   vorher    kurz, wie es vorher war, z. B. "Sa 07.11.2026 in Bahrain" oder "19:30 Uhr Ortszeit" (nicht bei „abgesagt“)
+//   ort       nur bei „abgesagt“: bisherige Strecke
+//   grund     optional, kurzer Grund
+//   gemeldet  "JJJJ-MM-TT" – Tag, an dem die Änderung eingetragen wurde
+// Einträge, deren Renntag mehr als 30 Tage vorbei ist, dürfen entfernt werden.
+const AENDERUNGEN = [
+  { serie: "wec", datum: "2026-11-08", art: "verschoben", titel: "6 Stunden von Monza (Finale, statt Bahrain)", vorher: "8 Stunden von Bahrain, Sa 07.11.2026", grund: "Wegen der Lage am Golf nach Monza verlegt", gemeldet: "2026-11-02" },
+  { serie: "wrc", datum: "2026-11-11", art: "abgesagt", titel: "Rallye Saudi-Arabien", ort: "Dschidda, Saudi-Arabien", grund: "Zählt nicht mehr zur WM, die Saison 2026 endete mit 13 Läufen", gemeldet: "2026-11-02" },
+  { serie: "wrc2", datum: "2026-11-11", art: "abgesagt", titel: "Rallye Saudi-Arabien", ort: "Dschidda, Saudi-Arabien", grund: "Zählt nicht mehr zur WM", gemeldet: "2026-11-02" },
+  { serie: "nascar-oreilly", datum: "2026-11-07", art: "startzeit", titel: "Championship Race", vorher: "19:30 Uhr Ortszeit (geschätzt)", gemeldet: "2026-11-02" },
 ];
