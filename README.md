@@ -3,8 +3,18 @@
 Renntermine für die App [Startampel](https://github.com/lapeka1979/rennen).
 Die App lädt `daten.json` beim Start und alle 6 Stunden und übernimmt sie, wenn `stand` neuer ist.
 
-Format: `{ "stand": "JJJJ-MM-TT", "geprueft": { serie: "JJJJ-MM-TT" }, "kategorien": [{ id, name }, ...], "serien": [{ id, name, info, farbe, kurz?, dauer?, kategorie }, ...], "rennen": [[serie, titel, ort, datum, startzeit, zeitzone, offiziell, bis?], ...], "offen": [[serie, text], ...] }`
+Format: `{ "stand": "JJJJ-MM-TT", "geprueft": { serie: "JJJJ-MM-TT" }, "kategorien": [{ id, name }, ...], "serien": [{ id, name, info, farbe, kurz?, dauer?, kategorie }, ...], "rennen": [[serie, titel, ort, datum, startzeit, zeitzone, offiziell, bis?], ...], "offen": [[serie, text], ...], "sender": { id: { name, url, frei? } }, "uebertragung": { serie: [senderId, ...], "serie|datum": [senderId, ...] } }`
 Datum und Startzeit sind Ortszeit der Strecke. `kategorien` legt die Gruppen und ihre Reihenfolge im Auswahlmenü der App fest, jede Serie nennt ihre Gruppe in `kategorie` (Serien ohne bekannte Gruppe landen unter „Weitere“). Gepflegt wird `daten.js` (gleiches Format wie in der App). Danach `STAND` hochsetzen und `node tools/daten-json.js daten.js daten.json` ausführen.
+
+## Sender (wo läuft das Rennen?)
+
+`SENDER` listet TV-Sender und Streams mit Name, Link und `frei: true`, wenn man ohne Abo schauen kann.
+`UEBERTRAGUNG` sagt, welche Sender eine Serie in Deutschland zeigen (Reihenfolge = Anzeige, freie
+Angebote zuerst lohnt sich). Ein Schlüssel `"serie|datum"` (Renntag wie in `RENNEN`) gilt nur für dieses
+eine Rennen und ersetzt dort die Serien-Angabe, etwa wenn RTL ein Formel-1-Rennen zusätzlich frei zeigt.
+Serien ohne Eintrag zeigen in der App einfach keine Sender. Ändern sich TV-Rechte (meist zum
+Saisonwechsel), in `daten.js` anpassen; `tools/daten-json.js` bricht ab, wenn eine Angabe auf einen fehlenden
+Sender zeigt. Die App braucht dafür kein Update.
 
 ## Serienwünsche
 

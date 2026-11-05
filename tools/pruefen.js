@@ -25,13 +25,13 @@ const H = (t) => hinweise.push(t);
 
 let D;
 try {
-  const code = fs.readFileSync(src, "utf8") + "\n;({ STAND, GEPRUEFT: typeof GEPRUEFT === 'undefined' ? {} : GEPRUEFT, KATEGORIEN: typeof KATEGORIEN === 'undefined' ? [] : KATEGORIEN, SERIEN, RENNEN, OFFEN })";
+  const code = fs.readFileSync(src, "utf8") + "\n;({ STAND, GEPRUEFT: typeof GEPRUEFT === 'undefined' ? {} : GEPRUEFT, KATEGORIEN: typeof KATEGORIEN === 'undefined' ? [] : KATEGORIEN, SERIEN, RENNEN, OFFEN, SENDER: typeof SENDER === 'undefined' ? {} : SENDER, UEBERTRAGUNG: typeof UEBERTRAGUNG === 'undefined' ? {} : UEBERTRAGUNG })";
   D = eval(code);
 } catch (e) {
   F(`daten.js lässt sich nicht lesen: ${e.message}`);
   ausgeben();
 }
-const { STAND, GEPRUEFT, KATEGORIEN, SERIEN, RENNEN, OFFEN } = D;
+const { STAND, GEPRUEFT, KATEGORIEN, SERIEN, RENNEN, OFFEN, SENDER, UEBERTRAGUNG } = D;
 
 const reDatum = /^\d{4}-\d{2}-\d{2}$/;
 const reZeit = /^([01]\d|2[0-3]):[0-5]\d$/;
@@ -166,9 +166,23 @@ for (const [id, s] of serien) {
   }
 }
 
+// ── Sender ──
+for (const [id, x] of Object.entries(SENDER)) {
+  if (!x || typeof x.name !== "string" || !x.name) F(`SENDER.${id}: name fehlt.`);
+  if (!x || typeof x.url !== "string" || !/^https:\/\/[^\s"<>]+$/.test(x.url)) F(`SENDER.${id}: url muss mit https:// beginnen (die App zeigt sonst keinen Link).`);
+}
+const serienIds = new Set(SERIEN.map(s => s && s.id));
+for (const [k, ids] of Object.entries(UEBERTRAGUNG)) {
+  const [serie, datum] = k.split("|");
+  if (!serienIds.has(serie)) F(`UEBERTRAGUNG["${k}"]: Serie "${serie}" gibt es nicht.`);
+  if (datum !== undefined && !RENNEN.some(r => r[0] === serie && r[3] === datum)) H(`UEBERTRAGUNG["${k}"]: kein Rennen von ${serie} am ${datum}, die Angabe wirkt nicht.`);
+  if (!Array.isArray(ids)) { F(`UEBERTRAGUNG["${k}"]: muss eine Liste von Sendern sein.`); continue; }
+  for (const id of ids) if (!SENDER[id]) F(`UEBERTRAGUNG["${k}"]: Sender "${id}" fehlt in SENDER.`);
+}
+
 // ── daten.json passt zu daten.js? ──
 if (fs.existsSync(jsonPfad)) {
-  const soll = JSON.stringify({ stand: STAND, geprueft: GEPRUEFT, kategorien: KATEGORIEN, serien: SERIEN, rennen: RENNEN, offen: OFFEN }, null, 0).replace(/\],\[/g, "],\n[");
+  const soll = JSON.stringify({ stand: STAND, geprueft: GEPRUEFT, kategorien: KATEGORIEN, serien: SERIEN, rennen: RENNEN, offen: OFFEN, sender: SENDER, uebertragung: UEBERTRAGUNG }, null, 0).replace(/\],\[/g, "],\n[");
   const ist = fs.readFileSync(jsonPfad, "utf8");
   if (ist !== soll) {
     let stand = "?";
