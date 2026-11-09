@@ -19,19 +19,19 @@
   GEPRUEFT: pro Serie das Datum des letzten Abgleichs mit den offiziellen Quellen
 */
 
-const STAND = "2026-11-02";
+const STAND = "2026-11-09";
 
 // Wann die Termine jeder Serie zuletzt mit den offiziellen Quellen abgeglichen wurden (JJJJ-MM-TT)
 const GEPRUEFT = {
-  f1: "2026-11-02", nascar: "2026-11-02", indycar: "2026-11-02", dtm: "2026-10-25",
-  wec: "2026-11-02", wrc: "2026-11-02", imsa: "2026-10-25", supercars: "2026-11-02",
-  "formel-e": "2026-11-02", f2: "2026-11-02", f3: "2026-10-28", f1academy: "2026-11-02", superformula: "2026-10-28", indynxt: "2026-11-02",
-  motogp: "2026-11-02", moto2: "2026-11-02", moto3: "2026-11-02", wsbk: "2026-10-28", mxgp: "2026-11-02", gtwc: "2026-10-28",
+  f1: "2026-11-09", nascar: "2026-11-02", indycar: "2026-11-09", dtm: "2026-10-25",
+  wec: "2026-11-02", wrc: "2026-11-02", imsa: "2026-11-09", supercars: "2026-11-09",
+  "formel-e": "2026-11-09", f2: "2026-11-02", f3: "2026-10-28", f1academy: "2026-11-09", superformula: "2026-10-28", indynxt: "2026-11-09",
+  motogp: "2026-11-09", moto2: "2026-11-09", moto3: "2026-11-09", wsbk: "2026-10-28", mxgp: "2026-11-02", gtwc: "2026-10-28",
   igtc: "2026-10-28", elms: "2026-10-28", supergt: "2026-10-28", britishgt: "2026-10-28", nls: "2026-11-02", "24h-lemans": "2026-10-28",
-  "24h-nbr": "2026-10-28", "24h-spa": "2026-10-28", "24h-daytona": "2026-10-28", "24h-dubai": "2026-10-29", "nascar-oreilly": "2026-11-02", "nascar-trucks": "2026-11-02",
-  nhra: "2026-10-28", btcc: "2026-10-28", supercup: "2026-11-02", wrc2: "2026-11-02", erc: "2026-11-02", worldrx: "2026-11-02",
-  "gtwc-america": "2026-10-29", "gtwc-asia": "2026-10-29", "gtwc-australia": "2026-10-29", "alms": "2026-10-29", "lmcup": "2026-10-29", "24h-series": "2026-11-02", "worldssp": "2026-10-29", "ewc": "2026-10-29",
-  "iomtt": "2026-10-29", "supercross": "2026-11-02", "promx": "2026-10-29", "speedway": "2026-11-02", "w2rc": "2026-11-02", "macau": "2026-11-02", "roc": "2026-10-29", "pikes": "2026-10-29",
+  "24h-nbr": "2026-10-28", "24h-spa": "2026-10-28", "24h-daytona": "2026-11-09", "24h-dubai": "2026-11-09", "nascar-oreilly": "2026-11-02", "nascar-trucks": "2026-11-02",
+  nhra: "2026-10-28", btcc: "2026-10-28", supercup: "2026-11-02", wrc2: "2026-11-02", erc: "2026-11-09", worldrx: "2026-11-09",
+  "gtwc-america": "2026-10-29", "gtwc-asia": "2026-10-29", "gtwc-australia": "2026-10-29", "alms": "2026-11-09", "lmcup": "2026-10-29", "24h-series": "2026-11-09", "worldssp": "2026-10-29", "ewc": "2026-10-29",
+  "iomtt": "2026-10-29", "supercross": "2026-11-02", "promx": "2026-10-29", "speedway": "2026-11-09", "w2rc": "2026-11-09", "macau": "2026-11-09", "roc": "2026-10-29", "pikes": "2026-10-29",
 };
 
 // Gruppen im Auswahlmenü der App, in dieser Reihenfolge. Jede Serie nennt ihre Gruppe in `kategorie`.
@@ -275,6 +275,21 @@ const RENNEN = [
   ["supercars", "Gold Coast 500", "Surfers Paradise, Queensland", "2026-10-25", "14:30", "Australia/Brisbane", false],
   ["supercars", "Sandown 500", "Sandown Raceway, Melbourne", "2026-11-08", "11:30", "Australia/Melbourne", false],
   ["supercars", "Adelaide Grand Final", "Adelaide Street Circuit", "2026-11-29", "14:30", "Australia/Adelaide", false],
+  // ───────── Supercars · 2027 (Zeit = Hauptrennen am Sonntag, geschätzt) ─────────
+  ["supercars", "Sydney Super440", "Sydney Motorsport Park, Eastern Creek", "2027-02-28", "14:00", "Australia/Sydney", false],
+  ["supercars", "Tasmania Super440", "Symmons Plains Raceway, Tasmanien", "2027-03-14", "14:00", "Australia/Hobart", false],
+  ["supercars", "Melbourne SuperSprint (beim F1-GP)", "Albert Park, Melbourne", "2027-04-04", "11:00", "Australia/Melbourne", false],
+  ["supercars", "Christchurch Super440", "Ruapuna Raceway, Christchurch, Neuseeland", "2027-05-09", "14:00", "Pacific/Auckland", false],
+  ["supercars", "Taupō Super440", "Taupō International Motorsport Park, Neuseeland", "2027-05-16", "14:00", "Pacific/Auckland", false],
+  ["supercars", "Darwin Triple Crown (Nachtrennen)", "Hidden Valley Raceway, Darwin", "2027-06-20", "19:00", "Australia/Darwin", false],
+  ["supercars", "Townsville 500", "Reid Park Street Circuit, Townsville", "2027-07-11", "14:00", "Australia/Brisbane", false],
+  ["supercars", "Perth Super440", "Wanneroo Raceway, Perth", "2027-08-08", "14:00", "Australia/Perth", false],
+  ["supercars", "Sandown 500", "Sandown Raceway, Melbourne", "2027-08-29", "11:30", "Australia/Melbourne", false],
+  ["supercars", "The Bend 500", "The Bend Motorsport Park, Südaustralien", "2027-09-19", "12:00", "Australia/Adelaide", false],
+  ["supercars", "Bathurst 1000", "Mount Panorama, Bathurst", "2027-10-10", "11:15", "Australia/Sydney", false],
+  ["supercars", "Gold Coast 500", "Surfers Paradise, Queensland", "2027-10-24", "14:30", "Australia/Brisbane", false],
+  ["supercars", "Phillip Island 500", "Phillip Island Grand Prix Circuit, Victoria", "2027-11-07", "12:00", "Australia/Melbourne", false],
+  ["supercars", "Adelaide Grand Final", "Adelaide Street Circuit", "2027-11-28", "14:30", "Australia/Adelaide", false],
 
   // ───────── MotoGP · Rest 2026 (Zeit = Rennen am Sonntag) ─────────
   ["motogp", "Großer Preis von Malaysia", "Sepang International Circuit, Malaysia", "2026-11-01", "15:00", "Asia/Kuala_Lumpur", false],
@@ -849,10 +864,10 @@ const RENNEN = [
   ["w2rc", "Rally-Raid Portugal", "Portugal", "2027-09-21", "08:00", "Europe/Lisbon", false, "2027-09-26"],
   ["w2rc", "Rallye du Maroc", "Marokko", "2027-10-24", "08:00", "Africa/Casablanca", false, "2027-10-29"],
 
-  // ───────── Macau Grand Prix · 2026 (19.–22. November, Zeiten geschätzt) ─────────
-  ["macau", "Macau Motorrad-Grand-Prix", "Guia Circuit, Macau", "2026-11-21", "15:00", "Asia/Macau", false],
-  ["macau", "FIA GT World Cup", "Guia Circuit, Macau", "2026-11-22", "11:30", "Asia/Macau", false],
-  ["macau", "Macau Grand Prix (FIA FR World Cup)", "Guia Circuit, Macau", "2026-11-22", "15:30", "Asia/Macau", false],
+  // ───────── Macau Grand Prix · 2026 (19.–22. November, Zeiten offiziell) ─────────
+  ["macau", "Macau Motorrad-Grand-Prix", "Guia Circuit, Macau", "2026-11-21", "09:10", "Asia/Macau", true],
+  ["macau", "FIA GT World Cup", "Guia Circuit, Macau", "2026-11-22", "12:35", "Asia/Macau", true],
+  ["macau", "Macau Grand Prix (FIA FR World Cup)", "Guia Circuit, Macau", "2026-11-22", "15:30", "Asia/Macau", true],
 
   // ───────── Race of Champions · 2027 (erstmals in Neuseeland) ─────────
   ["roc", "Nations Cup", "Sky Stadium, Wellington, Neuseeland", "2027-01-09", "18:00", "Pacific/Auckland", false],
@@ -864,7 +879,6 @@ const RENNEN = [
 
 // Bekannte Rennen ohne festes Datum (werden in der App als „Termin folgt" gelistet)
 const OFFEN = [
-  ["supercars", "Kalender 2027 noch nicht veröffentlicht (Verhandlungen laufen, ca. 14 Läufe erwartet)"],
   ["f1", "Sprint-Wochenenden 2027: Bahrain, Australien, Japan, Kanada, Monaco, Großbritannien, Italien, São Paulo, Katar, Abu Dhabi"],
   ["indynxt", "Saison 2026 beendet; Kalender 2027 noch nicht veröffentlicht (folgt in den nächsten Wochen)"],
   ["f1academy", "Kalender 2027 noch nicht veröffentlicht (Rennen im Rahmen der Formel 1)"],
@@ -878,4 +892,5 @@ const OFFEN = [
   ["wrc", "Rallye Saudi-Arabien 2026 (11.–14. November) zählt nicht mehr zur WM, die Saison 2026 endete mit 13 Läufen"],
   ["formel-e", "Saisonauftakt in Dschidda (18./19. Dezember) wegen der Lage in der Region unsicher, eine Verschiebung ist im Gespräch"],
   ["24h-series", "Middle East Trophy 2026/27: Yas 12h und 6h Abu Dhabi wegen der Lage am Golf unsicher, Kyalami ersetzt die 24h Dubai"],
+  ["macau", "74. Macau Grand Prix im November 2027, Termin noch nicht veröffentlicht"],
 ];
